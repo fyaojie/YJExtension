@@ -20,6 +20,6 @@ s.license          = { :type => 'MIT', :file => 'LICENSE' }
 
   s.source       = { :git => "https://github.com/feng562925462/YJExtension.git", :tag => "0.0.1" }
 
-  s.source_files  = "YJExtension/Classes/**/*.{h,m}"
+  s.source_files  = "Classes/**/*.{h,m}"
 
 end
