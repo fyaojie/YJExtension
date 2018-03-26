@@ -110,7 +110,7 @@
 #pragma mark 格式化为YYYY-MM-dd格式的日期字符串
 - (NSString *)yj_formatYMD {return [NSDate yj_formatYMD:self];}
 
-+ (NSString *)yj_formatYMD:(NSDate *)date {return [NSString stringWithFormat:@"%lu-%02lu-%02lu",date.yj_year,date.yj_month, date.yj_day];}
++ (NSString *)yj_formatYMD:(NSDate *)date {return [NSString stringWithFormat:@"%lu-%02lu-%02lu",(unsigned long)date.yj_year,(unsigned long)date.yj_month, (unsigned long)date.yj_day];}
 
 
 #pragma mark 日期是否相等 (只判断年月日)
