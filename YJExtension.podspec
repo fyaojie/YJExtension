@@ -22,4 +22,5 @@ s.license          = { :type => 'MIT', :file => 'LICENSE' }
 
   s.source_files  = "Classes/**/*.{h,m}"
 
+  s.frameworks = "Foundation", "UIKit"
 end
