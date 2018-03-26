@@ -22,6 +22,6 @@
  *
  *  @return 属性字符串
  */
-+ (NSAttributedString *)yj_cconversionToAttributedStringWithHtml:(NSString *)html;
++ (NSAttributedString *)yj_conversionToAttributedStringWithHtml:(NSString *)html;
 
 @end
