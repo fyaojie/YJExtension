@@ -10,7 +10,8 @@ Pod::Spec.new do |s|
 
   s.homepage     = "https://github.com/feng562925462/YJExtension"
 
-  s.license      = "MIT"
+  # s.license      = "MIT"
+s.license          = { :type => 'MIT', :file => 'LICENSE' }
   
 
   s.author             = { "odreamboy" => "562925462@qq.com" }
