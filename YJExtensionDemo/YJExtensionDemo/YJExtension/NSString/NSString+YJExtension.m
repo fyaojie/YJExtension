@@ -7,7 +7,7 @@
 //
 
 #import "NSString+YJExtension.h"
-#import "NSString+YJDevice.h"
+#import "UIDevice+YJExtension.h"
 
 @implementation NSString (YJExtension)
 
@@ -47,7 +47,7 @@
     NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:charactersToEscape] invertedSet];
     NSString *encodedUrl = [self stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
     
-    if ([NSString yj_systemVersion].integerValue >= 9.0) {
+    if ([UIDevice yj_systemVersion].integerValue >= 9.0) {
         return encodedUrl;
     }
     
@@ -79,5 +79,56 @@
     }];
     
     return result;
+}
+
+/**
+ *  Unicode编码的字符串转成NSString
+ */
+- (NSString *)yj_makeUnicodeToString {
+    NSString *tempStr1 = [self stringByReplacingOccurrencesOfString:@"\\u"withString:@"\\U"];
+    NSString *tempStr2 = [tempStr1 stringByReplacingOccurrencesOfString:@"\""withString:@"\\\""];
+    NSString *tempStr3 = [[@"\""stringByAppendingString:tempStr2] stringByAppendingString:@"\""];
+    NSData *tempData = [tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSString *returnStr = [NSPropertyListSerialization propertyListWithData:tempData options:NSPropertyListMutableContainersAndLeaves format:NULL error:NULL];
+    
+    return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
+}
+
+/**
+ *  返回当前的字符数
+ */
+- (int)yj_wordsCount {
+    NSInteger n = self.length;
+    int i;
+    int l = 0, a = 0, b = 0;
+    unichar c;
+    for (i = 0; i < n; i++)
+    {
+        c = [self characterAtIndex:i];
+        if (isblank(c)) {
+            b++;
+        } else if (isascii(c)) {
+            a++;
+        } else {
+            l++;
+        }
+    }
+    if (a == 0 && l == 0) {
+        return 0;
+    }
+    return l + (int)ceilf((float)(a + b) / 2.0);
+}
+
++ (NSString *)yj_reverseString:(NSString *)strSrc
+{
+    NSMutableString* reverseString = [[NSMutableString alloc] init];
+    NSInteger charIndex = [strSrc length];
+    while (charIndex > 0) {
+        charIndex --;
+        NSRange subStrRange = NSMakeRange(charIndex, 1);
+        [reverseString appendString:[strSrc substringWithRange:subStrRange]];
+    }
+    return reverseString;
 }
 @end

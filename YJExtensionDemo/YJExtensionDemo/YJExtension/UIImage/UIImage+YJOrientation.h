@@ -57,6 +57,7 @@
  *  @return 弧度
  */
 +(CGFloat)yj_degreesToRadians:(CGFloat)degrees;
+
 /**
  *  @brief  弧度转角度
  *

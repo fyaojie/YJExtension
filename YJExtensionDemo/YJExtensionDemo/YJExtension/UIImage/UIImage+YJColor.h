@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImage (YJColor)
+/**
+ *  根据颜色值生成图片
+ *
+ *  @param color 添加的颜色值
+ *
+ *  @return 生成的图片
+ */
++ (nullable UIImage*)yj_imageWithColor:(nullable UIColor *)color;
 
 /**
  *  根据颜色生成纯色图片
@@ -18,32 +26,47 @@
  *
  *  @return 图片
  */
-+ (UIImage*)yj_imageWithColor:(UIColor *)color
-                         size:(CGSize)size;
++ (UIImage*)yj_imageWithColor:(UIColor *)color size:(CGSize)size;
 
 /**
- *  @brief  根据颜色生成纯色图片 (1*1)
+ *  生成一个颜色渐变的背景图
  *
- *  @param color 颜色
+ *  @param colors 传递的颜色值
+ *  @param frame  设置图片大小
  *
- *  @return 纯色图片
+ *  @return 生成的图片
  */
-+ (UIImage *)yj_imageWithColor:(UIColor *)color;
++ (nullable UIImage*)yj_gradientImage:(nullable NSArray<UIColor *> *)colors withFrame: (CGRect)frame;
+
 /**
- *  @brief  取图片某一点的颜色
+ *  利用CAGradientLayer创建颜色渐变的图层
  *
- *  @param point 某一点
+ *  @param colorsArr   颜色数组
+ *  @param locationArr 分割点数组
+ *  @param startPoint  颜色渐变的起点 (0,0),(0,1)……
+ *  @param endPoint    颜色渐变的终点 (0,0),(0,1)……
+ *  @param layerFrame  生成的图层的frame
  *
- *  @return 颜色
+ *  @return 颜色渐变的图层
  */
-- (UIColor *)yj_colorAtPoint:(CGPoint )point;
++ (nullable CAGradientLayer*)createGradientLayer:(nullable NSArray<UIColor *> *)colorsArr location:(nullable NSArray*)locationArr start:(CGPoint)startPoint end:(CGPoint)endPoint frame:(CGRect)layerFrame;
+
 /**
- *  @brief  取某一像素的颜色
+ *  图片在某一个点的颜色值
  *
- *  @param point 一像素
+ *  @param point 在图像的那个点
  *
- *  @return 颜色
+ *  @return 返回的颜色值
  */
-- (UIColor *)yj_colorAtPixel:(CGPoint)point;
+- (nullable UIColor *)yj_colorAtPoint:(CGPoint )point;
+
+/**
+ *  某一个点的像素
+ *
+ *  @param point 图像上的点
+ *
+ *  @return 返回的像素
+ */
+- (nullable UIColor *)yj_colorAtPixel:(CGPoint)point;
 
 @end

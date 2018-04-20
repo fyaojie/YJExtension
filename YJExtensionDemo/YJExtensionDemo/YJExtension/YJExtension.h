@@ -9,14 +9,20 @@
 #ifndef YJExtension_h
 #define YJExtension_h
 
+#import "NSDictionary+YJExtension.h"
+
+#import "NSArray+YJExtension.h"
+
 #import "NSAttributedString+YJExtension.h"
 
 #import "NSDate+YJExtension.h"
 
-#import "NSString+YJDevice.h"
 #import "NSString+YJExtension.h"
-#import "NSString+YJRegular.h"
-
+#import "NSString+YJEmoji.h"
+#import "NSString+YJHash.h"
+#import "NSString+YJJudge.h"
+#import "NSString+YJProject.h"
+#import "NSString+YJMIME.h"
 
 #import "UIBarButtonItem+YJBadge.h"
 #import "UIBarButtonItem+YJExtension.h"
@@ -32,11 +38,21 @@
 
 #import "UIControl+YJExtension.h"
 
+#import "UIImage+YJSize.h"
+#import "UIImage+YJGIF.h"
+#import "UIImage+YJAlpha.h"
 #import "UIImage+YJColor.h"
 #import "UIImage+YJCompress.h"
-#import "UIImage+YJExtension.h"
-#import "UIImage+YJGIF.h"
 #import "UIImage+YJOrientation.h"
+#import "UIImage+YJExtension.h"
+
+#import "UIView+YJFrame.h"
+#import "UIView+YJGestureRecognizer.h"
+#import "UIView+YJNib.h"
+
+#import "UITextView+YJPlaceHolder.h"
+
+#import "UIDevice+YJExtension.h"
 
 #import "UILabel+YJExtension.h"
 

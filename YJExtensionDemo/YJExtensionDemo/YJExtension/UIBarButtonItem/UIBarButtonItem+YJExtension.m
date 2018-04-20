@@ -60,7 +60,7 @@
         }
     }
     
-    UIImage *image = [UIImage yj_imageFromView:rightBgView];
+    UIImage *image;// = ;//[UIImage yj_imageFromView:rightBgView];
     
     return [UIBarButtonItem createItemWithImage:image highlightedImage:image target:target action:action];
 }

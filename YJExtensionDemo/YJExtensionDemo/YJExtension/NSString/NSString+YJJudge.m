@@ -1,14 +1,57 @@
 //
-//  NSString+YJRegular.m
-//  YJBaseProject
+//  NSString+YJJudge.m
+//  YJExtensionDemo
 //
-//  Created by 冯垚杰 on 2017/8/17.
-//  Copyright © 2017年 冯垚杰. All rights reserved.
+//  Created by cool on 2018/4/20.
+//  Copyright © 2018 child. All rights reserved.
 //
 
-#import "NSString+YJRegular.h"
+#import "NSString+YJJudge.h"
 
-@implementation NSString (YJRegular)
+@implementation NSString (YJJudge)
+
+/**
+ *  判断是否是空
+ */
+- (BOOL)yj_isBlankString {
+    if (self == nil || self == NULL ||[self isEqual:@""]||[self isEqual:@"<null>"])
+        return YES;
+    
+    if ([self isKindOfClass:[NSNull class]])
+        return YES;
+    //判断是不是空格
+    if ([[self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+        return YES;
+    
+    return NO;
+}
+
+/**
+ *  判断是否包含中文
+ */
+- (BOOL)yj_isContainChinese {
+    NSUInteger length = [self length];
+    for (NSUInteger i = 0; i < length; i++) {
+        NSRange range = NSMakeRange(i, 1);
+        NSString *subString = [self substringWithRange:range];
+        const char *cString = [subString UTF8String];
+        if (strlen(cString) == 3) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+/**
+ *  是否包含空格
+ */
+- (BOOL)yj_isContainBlank {
+    NSRange range = [self rangeOfString:@" "];
+    if (range.location != NSNotFound) {
+        return YES;
+    }
+    return NO;
+}
 
 #pragma mark 正则匹配
 - (BOOL)yj_isValidateByRegex:(NSString *)regex{
@@ -17,21 +60,21 @@
 }
 
 
-#pragma mark 验证纯数字 
+#pragma mark 验证纯数字
 - (BOOL)yj_isOnlyNumber
 {
     NSString *numberRegex = @"^[0-9]*$";
     return [self yj_isValidateByRegex:numberRegex];
 }
 
-#pragma mark 验证纯中文 
+#pragma mark 验证纯中文
 - (BOOL)yj_isOnlyChinese
 {
     NSString *chineseRegex = @"^[\u4e00-\u9fa5]{0,}$";
     return [self yj_isValidateByRegex:chineseRegex];
 }
 
-#pragma mark 密码6-20为数字和字母组成 
+#pragma mark 密码6-20为数字和字母组成
 - (BOOL)yj_validatePassword
 {
     NSString *passWordRegex = @"^[a-zA-Z0-9]{6,20}+$";
@@ -39,7 +82,7 @@
 }
 
 
-#pragma mark 验证密码:数字+英文(大小写) 
+#pragma mark 验证密码:数字+英文(大小写)
 - (BOOL)yj_isPwd
 {
     NSString *pwdRegex = @"^[A-Za-z0-9]*$";
@@ -51,7 +94,7 @@
     return [self yj_isValidateByRegex:pwdRegex];
 }
 
-#pragma mark 手机号分服务商 
+#pragma mark 手机号分服务商
 - (BOOL)yj_isMobileNumberClassification
 {
     /**
@@ -65,19 +108,19 @@
     /**
      10         * 中国移动：China Mobile
      11         * 134[0-8],135,136,137,138,139,150,151,157,158,159,182,187,188，1705
-     12   
+     12
      */
     NSString * CM = @"^1(34[0-8]|(3[5-9]|5[017-9]|8[278])\\d|705)\\d{7}$";
     /**
      15         * 中国联通：China Unicom
      16         * 130,131,132,152,155,156,185,186,1709
-     17   
+     17
      */
     NSString * CU = @"^1((3[0-2]|5[256]|8[56])\\d|709)\\d{7}$";
     /**
      20         * 中国电信：China Telecom
      21         * 133,1349,153,180,189,1700
-     22   
+     22
      */
     NSString * CT = @"^1((33|53|8[09])\\d|349|700)\\d{7}$";
     
@@ -86,7 +129,7 @@
      25         * 大陆地区固话及小灵通
      26         * 区号：010,020,021,022,023,024,025,027,028,029
      27         * 号码：七位或八位
-     28   
+     28
      */
     NSString * PHS = @"^0(10|2[0-5789]|\\d{3})\\d{7,8}$";
     
@@ -106,7 +149,7 @@
     }
 }
 
-#pragma mark 手机号有效性 
+#pragma mark 手机号有效性
 - (BOOL)yj_isMobileNumber
 {
     NSString *mobileRegex = @"^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$";
@@ -114,21 +157,21 @@
     return ret1;
 }
 
-#pragma mark 邮箱 
+#pragma mark 邮箱
 - (BOOL)yj_isEmailAddress
 {
     NSString *emailRegex = @"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
     return [self yj_isValidateByRegex:emailRegex];
 }
 
-#pragma mark 简单的身份证有效性 
+#pragma mark 简单的身份证有效性
 - (BOOL)yj_simpleVerifyIdentityCardNum
 {
     NSString *regex2 = @"^(\\d{14}|\\d{17})(\\d|[xX])$";
     return [self yj_isValidateByRegex:regex2];
 }
 
-#pragma mark 精确的身份证号码有效性检测 
+#pragma mark 精确的身份证号码有效性检测
 + (BOOL)yj_accurateVerifyIDCardNumber:(NSString *)value {
     value = [value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
@@ -223,7 +266,7 @@
     }
 }
 
-#pragma mark 车牌 
+#pragma mark 车牌
 - (BOOL)yj_isCarNumber
 {
     // 车牌号:湘K-DE829 香港车牌号码:粤Z-J499港
@@ -231,7 +274,7 @@
     return [self yj_isValidateByRegex:carRegex];
 }
 
-#pragma mark 银行卡的有效性 
+#pragma mark 银行卡的有效性
 - (BOOL)yj_bankCardluhmCheck
 {
     NSString * lastNum = [[self substringFromIndex:(self.length-1)] copy];// 取出最后一位
@@ -290,7 +333,7 @@
     return (luhmTotal%10 ==0)?YES:NO;
 }
 
-#pragma mark IP地址有效性 
+#pragma mark IP地址有效性
 - (BOOL)yj_isIPAddress
 {
     NSString *regex = [NSString stringWithFormat:@"^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})$"];
@@ -314,42 +357,42 @@
     return NO;
 }
 
-#pragma mark Mac地址有效性 
+#pragma mark Mac地址有效性
 - (BOOL)yj_isMacAddress
 {
     NSString * macAddRegex = @"([A-Fa-f\\d]{2}:){5}[A-Fa-f\\d]{2}";
     return  [self yj_isValidateByRegex:macAddRegex];
 }
 
-#pragma mark 网址的有效性 
+#pragma mark 网址的有效性
 - (BOOL)yj_isValidUrl
 {
     NSString *regex = @"^((http)|(https))+:[^\\s]+\\.[^\\s]*$";
     return [self yj_isValidateByRegex:regex];
 }
 
-#pragma mark 纯汉字 
+#pragma mark 纯汉字
 - (BOOL)yj_isValidChinese;
 {
     NSString *chineseRegex = @"^[\u4e00-\u9fa5]+$";
     return [self yj_isValidateByRegex:chineseRegex];
 }
 
-#pragma mark 邮政编码 
+#pragma mark 邮政编码
 - (BOOL)yj_isValidPostalcode
 {
     NSString *postalRegex = @"^[0-8]\\d{5}(?!\\d)$";
     return [self yj_isValidateByRegex:postalRegex];
 }
 
-#pragma mark 工商税号 
+#pragma mark 工商税号
 - (BOOL)yj_isValidTaxNo
 {
     NSString *taxNoRegex = @"[0-9]\\d{13}([0-9]|X)$";
     return [self yj_isValidateByRegex:taxNoRegex];
 }
 
-#pragma mark 是否符合最小长度、最长长度，是否包含中文,首字母是否可以为数字 
+#pragma mark 是否符合最小长度、最长长度，是否包含中文,首字母是否可以为数字
 - (BOOL)yj_isValidWithMinLenth:(NSInteger)minLenth maxLenth:(NSInteger)maxLenth containChinese:(BOOL)containChinese firstCannotBeDigtal:(BOOL)firstCannotBeDigtal;
 {
     //  [\u4e00-\u9fa5A-Za-z0-9_]{4,20}
@@ -360,7 +403,7 @@
     return [self yj_isValidateByRegex:regex];
 }
 
-#pragma mark 是否符合最小长度、最长长度，是否包含中文,数字，字母，其他字符，首字母是否可以为数字 
+#pragma mark 是否符合最小长度、最长长度，是否包含中文,数字，字母，其他字符，首字母是否可以为数字
 - (BOOL)yj_isValidWithMinLenth:(NSInteger)minLenth maxLenth:(NSInteger)maxLenth containChinese:(BOOL)containChinese containDigtal:(BOOL)containDigtal containLetter:(BOOL)containLetter containOtherCharacter:(NSString *)containOtherCharacter firstCannotBeDigtal:(BOOL)firstCannotBeDigtal
 {
     NSString *hanzi = containChinese ? @"\u4e00-\u9fa5" : @"";
@@ -372,6 +415,5 @@
     NSString *regex = [NSString stringWithFormat:@"%@%@%@%@", lengthRegex, digtalRegex, letterRegex, characterRegex];
     return [self yj_isValidateByRegex:regex];
 }
-
 
 @end

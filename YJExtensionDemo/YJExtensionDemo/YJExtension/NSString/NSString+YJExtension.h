@@ -43,5 +43,18 @@
 
 /// 过滤特殊字符
 - (NSString *)yj_filterSpecialCharacters;
+
+/**
+ *  Unicode编码的字符串转成NSString
+ */
+- (NSString *)yj_makeUnicodeToString;
+
+/**
+ *  返回当前的字符数
+ */
+- (int)yj_wordsCount;
+
+/// 字符串倒序
++ (NSString *)yj_reverseString:(NSString *)strSrc;
 @end
 

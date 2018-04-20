@@ -11,21 +11,14 @@
 @interface UIImage (YJExtension)
 
 /**
- *  通过view 生成图片
+ *  截取当前视图上的图片
  *
- *  @param orgView 要生成图片的view
+ *  @param view 视图所在的View
  *
- *  @return 图片
+ *  @return 返回的图片
  */
-+ (UIImage *)yj_imageFromView:(UIView *)orgView;
++ (nullable UIImage *)yj_captureWithView:(nullable UIView *)view;
 
-
-/**
- *  @brief  返回该图片是否有透明度通道
- *
- *  @return 是否有透明度通道
- */
-- (BOOL)yj_hasAlphaChannel;
 
 /**
  *  @brief  获得灰度图
@@ -44,5 +37,15 @@
  *
  *  @return 合并后图片
  */
-+ (UIImage*)jk_mergeImage:(UIImage*)firstImage withImage:(UIImage*)secondImage;
++ (UIImage*)yj_mergeImage:(UIImage*)firstImage withImage:(UIImage*)secondImage;
+
+/**
+ *  返回带有圆角和边框的图片
+ *
+ *  @param radius 圆角半径
+ *  @param borderWidth 变宽的宽度
+ *
+ *  @return 返回之后的图片
+ */
+- (nullable UIImage *)yj_roundedCornerImage:(CGFloat)radius borderWidth:(CGFloat)borderWidth;
 @end

@@ -1,18 +1,71 @@
 //
-//  NSString+YJDevice.m
-//  YJBaseProject
+//  UIDevice+YJExtension.m
+//  YJExtensionDemo
 //
-//  Created by 冯垚杰 on 2017/8/19.
-//  Copyright © 2017年 冯垚杰. All rights reserved.
+//  Created by cool on 2018/4/20.
+//  Copyright © 2018 child. All rights reserved.
 //
 
-#import "NSString+YJDevice.h"
+#import "UIDevice+YJExtension.h"
+#import <sys/sysctl.h>
+#import <sys/mount.h>
+#import <mach/mach.h>
 #import <sys/utsname.h>
-#import <UIKit/UIKit.h>
 #import <arpa/inet.h>
 #import <ifaddrs.h>
 
-@implementation NSString (YJDevice)
+@implementation UIDevice (YJExtension)
+
++ (NSUInteger)getSysInfo:(uint)typeSpecifier
+{
+    size_t size = sizeof(int);
+    int result;
+    int mib[2] = {CTL_HW, typeSpecifier};
+    sysctl(mib, 2, &result, &size, NULL, 0);
+    return (NSUInteger)result;
+}
+
++ (NSUInteger)yj_totalMemoryBytes
+{
+    return [self getSysInfo:HW_PHYSMEM];
+}
+
++ (NSUInteger)yj_freeMemoryBytes
+{
+    mach_port_t host_port = mach_host_self();
+    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
+    vm_size_t pagesize;
+    vm_statistics_data_t vm_stat;
+    
+    host_page_size(host_port, &pagesize);
+    if (host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size) != KERN_SUCCESS) {
+        return 0;
+    }
+    unsigned long mem_free = vm_stat.free_count * pagesize;
+    return mem_free;
+}
+
++ (long long)yj_freeDiskSpaceBytes
+{
+    struct statfs buf;
+    long long freespace;
+    freespace = 0;
+    if ( statfs("/private/var", &buf) >= 0 ) {
+        freespace = (long long)buf.f_bsize * buf.f_bfree;
+    }
+    return freespace;
+}
+
++ (long long)yj_totalDiskSpaceBytes
+{
+    struct statfs buf;
+    long long totalspace;
+    totalspace = 0;
+    if ( statfs("/private/var", &buf) >= 0 ) {
+        totalspace = (long long)buf.f_bsize * buf.f_blocks;
+    }
+    return totalspace;
+}
 
 + (BOOL)yj_isSimulator {
     if ([[self yj_deviceModelName] containsString:@"Simulator"]) {
@@ -28,7 +81,7 @@
     
     uname(&systemInfo);
     NSString *deviceModel = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
-
+    
     /**
      * CDMA电信3G的网络模式
      * GSM是通用的移动联通电信2g模式
@@ -102,30 +155,6 @@
                                       @"x86_64":@"Simulator(模拟器)"
                                       };
     return  [deviceModelDict objectForKey:deviceModel] ?: deviceModel;
-}
-
-#pragma mark 当前App的基本信息字典 
-+ (NSDictionary *)yj_appInfo {
-    return [[NSBundle mainBundle] infoDictionary];
-}
-
-#pragma mark app名称
-+ (NSString *)yj_appName {
-    return [[self yj_appInfo] objectForKey:@"CFBundleDisplayName"];
-}
-
-#pragma mark 包名
-+ (NSString *)yj_bundleId {
-    return [[self yj_appInfo] objectForKey:@"CFBundleIdentifier"];
-}
-
-#pragma mark app版本
-+ (NSString *)yj_appVersion {
-    return [[self yj_appInfo] objectForKey:@"CFBundleShortVersionString"];
-}
-#pragma mark app build版本
-+ (NSString *)yj_appBuild {
-    return [[self yj_appInfo] objectForKey:@"CFBundleVersion"];
 }
 
 #pragma mark 手机别名： 用户定义的名称

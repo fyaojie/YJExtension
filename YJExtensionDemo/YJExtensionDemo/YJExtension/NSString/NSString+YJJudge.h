@@ -1,15 +1,29 @@
 //
-//  NSString+YJRegular.h
-//  YJBaseProject
+//  NSString+YJJudge.h
+//  YJExtensionDemo
 //
-//  Created by 冯垚杰 on 2017/8/17.
-//  Copyright © 2017年 冯垚杰. All rights reserved.
+//  Created by cool on 2018/4/20.
+//  Copyright © 2018 child. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
+@interface NSString (YJJudge)
 
-@interface NSString (YJRegular) // 正则验证
+/**
+ *  判断是否是空
+ */
+- (BOOL)yj_isBlankString;
+
+/**
+ *  判断是否包含中文
+ */
+- (BOOL)yj_isContainChinese;
+
+/**
+ *  是否包含空格
+ */
+- (BOOL)yj_isContainBlank;
 
 /**
  *  验证纯数字
@@ -133,6 +147,5 @@
                  containLetter:(BOOL)containLetter
          containOtherCharacter:(NSString *)containOtherCharacter
            firstCannotBeDigtal:(BOOL)firstCannotBeDigtal;
-
 
 @end

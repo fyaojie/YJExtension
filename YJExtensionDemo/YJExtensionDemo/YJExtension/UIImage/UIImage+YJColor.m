@@ -27,8 +27,21 @@ static CGContextRef _newBitmapContext(CGSize size)
     return context;
 }
 
-
 @implementation UIImage (YJColor)
+
++ (UIImage *)yj_imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
 
 + (UIImage*)yj_imageWithColor:(UIColor*)color size:(CGSize)size
 {
@@ -45,35 +58,55 @@ static CGContextRef _newBitmapContext(CGSize size)
     return img;
 }
 
-/**
- *  @brief  根据颜色生成纯色图片
- *
- *  @param color 颜色
- *
- *  @return 纯色图片
- */
-+ (UIImage *)yj_imageWithColor:(UIColor *)color {
-    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
-    UIGraphicsBeginImageContext(rect.size);
++ (UIImage *)yj_gradientImage:(NSArray<UIColor *> *)colors withFrame:(CGRect)frame {
+    NSMutableArray *ar = [NSMutableArray array];
+    for(UIColor *c in colors) {
+        [ar addObject:(id)c.CGColor];
+    }
+    //开始生成
+    UIGraphicsBeginImageContextWithOptions(frame.size, YES, 1);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    
+    CGContextSaveGState(context);
+    //定义颜色空间
+    CGColorSpaceRef colorSpace = CGColorGetColorSpace([[colors lastObject] CGColor]);
+    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef)ar, NULL);
+    //设置起点和终点
+    CGPoint start,end;;
+    start = CGPointMake(0.0, frame.size.height);
+    end = CGPointMake(frame.size.width, 0.0);
+    //绘制图形
+    CGContextDrawLinearGradient(context, gradient, start, end,kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+    //生成图片
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    //释放
+    CGGradientRelease(gradient);
+    CGContextRestoreGState(context);
+    CGColorSpaceRelease(colorSpace);
     UIGraphicsEndImageContext();
     
     return image;
 }
-/**
- *  @brief  取图片某一点的颜色
- *
- *  @param point 某一点
- *
- *  @return 颜色
- */
-- (UIColor *)yj_colorAtPoint:(CGPoint )point
-{
+
++ (nullable CAGradientLayer*)createGradientLayer:(NSArray<UIColor *> *)colorsArr location:(NSArray *)locationArr start:(CGPoint)startPoint end:(CGPoint)endPoint frame:(CGRect)layerFrame{
+    
+    CAGradientLayer *layer = [CAGradientLayer layer];
+    layer.frame            = layerFrame;
+    //设置颜色渐变的方向
+    layer.startPoint       = startPoint;
+    layer.endPoint         = endPoint;
+    //设置颜色组,颜色转换
+    NSMutableArray *colors = [NSMutableArray array];
+    for (UIColor *color in colorsArr) {
+        [colors addObject:(__bridge id)color.CGColor];
+    }
+    layer.colors = colors;
+    //设置颜色的分割点
+    layer.locations = locationArr;
+    
+    return layer;
+}
+
+- (UIColor *)yj_colorAtPoint:(CGPoint)point {
     if (point.x < 0 || point.y < 0) return nil;
     
     CGImageRef imageRef = self.CGImage;
@@ -115,15 +148,8 @@ static CGContextRef _newBitmapContext(CGSize size)
     free(rawData);
     return result;
 }
-/**
- *  @brief  取某一像素的颜色
- *
- *  @param point 一像素
- *
- *  @return 颜色
- */
-- (UIColor *)yj_colorAtPixel:(CGPoint)point
-{
+
+- (UIColor *)yj_colorAtPixel:(CGPoint)point {
     // Cancel if point is outside image coordinates
     if (!CGRectContainsPoint(CGRectMake(0.0f, 0.0f, self.size.width, self.size.height), point)) {
         return nil;
@@ -163,5 +189,4 @@ static CGContextRef _newBitmapContext(CGSize size)
     CGFloat alpha = (CGFloat)pixelData[3] / 255.0f;
     return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
-
 @end
