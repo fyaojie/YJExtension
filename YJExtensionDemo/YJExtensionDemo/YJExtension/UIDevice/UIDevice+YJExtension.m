@@ -16,6 +16,310 @@
 
 @implementation UIDevice (YJExtension)
 
+#pragma mark 获取当前设备名
+
++ (NSString *)yj_deviceIdentifier {
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+}
+
++ (YJDeviceType)yj_deviceTypeWithIdentifier:(NSString *)identifier {
+   NSArray<NSArray<NSString *> *> *array = @[@[@"iPod5,1"],
+                                              @[@"iPod7,1"],
+                                              @[@"iPhone3,1", @"iPhone3,2", @"iPhone3,3"],
+                                              @[@"iPhone4,1"],
+                                              @[@"iPhone5,1", @"iPhone5,2"],
+                                              @[@"iPhone5,3", @"iPhone5,4"],
+                                              @[@"iPhone6,1", @"iPhone6,2"],
+                                              @[@"iPhone7,2"],
+                                              @[@"iPhone7,1"],
+                                              @[@"iPhone8,1"],
+                                            @[@"iPhone8,2"],
+                                            @[@"iPhone9,1", @"iPhone9,3"],
+                                            @[@"iPhone9,2", @"iPhone9,4"],
+                                            @[@"iPhone8,4"],
+                                            @[@"iPhone10,1", @"iPhone10,4"],
+                                            @[@"iPhone10,2", @"iPhone10,5"],
+                                            @[@"iPhone10,3", @"iPhone10,6"],
+                                            @[@"iPad2,1", @"iPad2,2", @"iPad2,3", @"iPad2,4"],
+                                            @[@"iPad3,1", @"iPad3,2", @"iPad3,3"],
+                                            @[@"iPad3,4", @"iPad3,5", @"iPad3,6"],
+                                            @[@"iPad4,1", @"iPad4,2", @"iPad4,3"],
+                                            @[@"iPad5,3", @"iPad5,4"],
+                                            @[@"iPad6,11", @"iPad6,12"],
+                                            @[@"iPad7,5", @"iPad7,6"],
+                                            @[@"iPad2,5", @"iPad2,6", @"iPad2,7"],
+                                            @[@"iPad4,4", @"iPad4,5", @"iPad4,6"],
+                                            @[@"iPad4,7", @"iPad4,8", @"iPad4,9"],
+                                            @[@"iPad5,1", @"iPad5,2"],
+                                            @[@"iPad6,3", @"iPad6,4"],
+                                            @[@"iPad6,7", @"iPad6,8"],
+                                            @[@"iPad7,1", @"iPad7,2"],
+                                            @[@"iPad7,3", @"iPad7,4"],
+                                            @[@"AudioAccessory1,1"],
+                                            @[@"i386", @"x86_64"],
+                                            ];
+    __block YJDeviceType type = YJDeviceType_unknown;
+    [array enumerateObjectsUsingBlock:^(NSArray<NSString *> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj enumerateObjectsUsingBlock:^(NSString * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+            if ([obj1 isEqualToString:identifier]) {
+                type = idx + 1;
+                *stop1 = YES;
+                *stop = YES;
+            }
+        }];
+    }];
+    
+    if (type > YJDeviceType_homePod) {
+        if (type == YJDeviceType_homePod + 1) {
+            NSProcessInfo *info = [[NSProcessInfo alloc] init];
+            NSString *value = [info.environment objectForKey:@"SIMULATOR_MODEL_IDENTIFIER"] ?: @"iOS" ;
+            return [self yj_deviceTypeWithIdentifier:value];
+        }
+        type = 0;
+    }
+    return type;
+}
+
++ (YJDeviceType)yj_deviceType {
+    return [self yj_deviceTypeWithIdentifier:[self yj_deviceIdentifier]];
+}
+
++ (BOOL)yj_isPod {
+    if ([self yj_deviceType] == YJDeviceType_iPodTouch5 || [self yj_deviceType] == YJDeviceType_iPodTouch6) {
+        return YES;
+    }
+    return NO;
+}
+
++ (BOOL)yj_isPhone {
+    if ([self yj_deviceType] == YJDeviceType_iPhone4 ||
+        [self yj_deviceType] == YJDeviceType_iPhone4s ||
+        [self yj_deviceType] == YJDeviceType_iPhone5 ||
+        [self yj_deviceType] == YJDeviceType_iPhone5c ||
+        [self yj_deviceType] == YJDeviceType_iPhone5s ||
+        [self yj_deviceType] == YJDeviceType_iPhone6 ||
+        [self yj_deviceType] == YJDeviceType_iPhone6Plus ||
+        [self yj_deviceType] == YJDeviceType_iPhone6s ||
+        [self yj_deviceType] == YJDeviceType_iPhone6sPlus ||
+        [self yj_deviceType] == YJDeviceType_iPhone7 ||
+        [self yj_deviceType] == YJDeviceType_iPhone7Plus ||
+        [self yj_deviceType] == YJDeviceType_iPhoneSE ||
+        [self yj_deviceType] == YJDeviceType_iPhone8 ||
+        [self yj_deviceType] == YJDeviceType_iPhone8Plus ||
+        [self yj_deviceType] == YJDeviceType_iPhoneX) {
+        return YES;
+    }
+    return NO;
+}
+
++ (BOOL)yj_isPad {
+    if ([self yj_deviceType] == YJDeviceType_iPad2 ||
+        [self yj_deviceType] == YJDeviceType_iPad3 ||
+        [self yj_deviceType] == YJDeviceType_iPad4 ||
+        [self yj_deviceType] == YJDeviceType_iPadAir ||
+        [self yj_deviceType] == YJDeviceType_iPadAir2 ||
+        [self yj_deviceType] == YJDeviceType_iPad5 ||
+        [self yj_deviceType] == YJDeviceType_iPad6 ||
+        [self yj_deviceType] == YJDeviceType_iPadMini ||
+        [self yj_deviceType] == YJDeviceType_iPadMini2 ||
+        [self yj_deviceType] == YJDeviceType_iPadMini3 ||
+        [self yj_deviceType] == YJDeviceType_iPadMini4 ||
+        [self yj_deviceType] == YJDeviceType_iPadPro9Inch ||
+        [self yj_deviceType] == YJDeviceType_iPadPro12Inch ||
+        [self yj_deviceType] == YJDeviceType_iPadPro12Inch2 ||
+        [self yj_deviceType] == YJDeviceType_iPadPro10Inch) {
+        return YES;
+    }
+    return NO;
+}
+
++ (BOOL)yj_isSimulator {
+    __block BOOL isExist = NO;
+    [@[@"i386", @"x86_64"]  enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([[self yj_deviceIdentifier] isEqualToString:obj]) {
+            isExist = YES;
+            *stop = YES;
+        }
+    }];
+    return isExist;
+}
+
+/// 屏幕宽高比
++ (double)yj_screenRatio {
+    
+    switch ([self yj_deviceType]) {
+        case YJDeviceType_iPodTouch5:
+        case YJDeviceType_iPodTouch6:
+        case YJDeviceType_iPhone5c:
+        case YJDeviceType_iPhone5s:
+        case YJDeviceType_iPhone6:
+        case YJDeviceType_iPhone6Plus:
+        case YJDeviceType_iPhone6s:
+        case YJDeviceType_iPhone6sPlus:
+        case YJDeviceType_iPhone7:
+        case YJDeviceType_iPhone7Plus:
+        case YJDeviceType_iPhoneSE:
+        case YJDeviceType_iPhone8:
+        case YJDeviceType_iPhone8Plus:
+            return 9/16.f;
+            break;
+        case YJDeviceType_iPhone4:
+        case YJDeviceType_iPhone4s:
+            return 2/3.f;
+            break;
+        case YJDeviceType_iPhoneX:
+            return 9/19.5f;
+            break;
+        case YJDeviceType_homePod:
+            return 4/5.f;
+            break;
+        case YJDeviceType_iPad2:
+        case YJDeviceType_iPad3:
+        case YJDeviceType_iPad4:
+        case YJDeviceType_iPadAir:
+        case YJDeviceType_iPadAir2:
+        case YJDeviceType_iPad5:
+        case YJDeviceType_iPad6:
+        case YJDeviceType_iPadMini:
+        case YJDeviceType_iPadMini2:
+        case YJDeviceType_iPadMini3:
+        case YJDeviceType_iPadMini4:
+        case YJDeviceType_iPadPro9Inch:
+        case YJDeviceType_iPadPro12Inch:
+        case YJDeviceType_iPadPro12Inch2:
+        case YJDeviceType_iPadPro10Inch:
+            return 3/4.f;
+            break;
+        default:
+            break;
+    }
+    return -1;
+}
+// 亮度
++ (int)yj_screenBrightness {
+    return [UIScreen mainScreen].brightness * 100;
+}
+
+// 设置类型字符串
++ (NSString *)yj_description {
+    
+    NSString *value = [self yj_deviceIdentifier];
+    
+    YJDeviceType type = [self yj_deviceType];
+    
+    switch (type) {
+        case YJDeviceType_iPodTouch5:
+            value = @"iPod Touch 5";
+            break;
+        case YJDeviceType_iPodTouch6:
+            value = @"iPod Touch 6";
+            break;
+        case YJDeviceType_iPhone4:
+            value = @"iPhone 4";
+            break;
+        case YJDeviceType_iPhone4s:
+            value = @"iPhone 4s";
+            break;
+        case YJDeviceType_iPhone5:
+            value = @"iPhone 5";
+            break;
+        case YJDeviceType_iPhone5c:
+            value = @"iPhone 5c";
+            break;
+        case YJDeviceType_iPhone5s:
+            value = @"iPhone 5s";
+            break;
+        case YJDeviceType_iPhone6:
+            value = @"iPhone 6";
+            break;
+        case YJDeviceType_iPhone6Plus:
+            value = @"iPhone 6 Plus";
+            break;
+        case YJDeviceType_iPhone6s:
+            value = @"iPhone 6s";
+            break;
+        case YJDeviceType_iPhone6sPlus:
+            value = @"iPhone 6s Plus";
+            break;
+        case YJDeviceType_iPhone7:
+            value = @"iPhone 7";
+            break;
+        case YJDeviceType_iPhone7Plus:
+            value = @"iPhone 7 Plus";
+            break;
+        case YJDeviceType_iPhoneSE:
+            value = @"iPhone SE";
+            break;
+        case YJDeviceType_iPhone8:
+            value = @"iPhone 8";
+            break;
+        case YJDeviceType_iPhone8Plus:
+            value = @"iPhone 8 Plus";
+            break;
+        case YJDeviceType_iPhoneX:
+            value = @"iPhone X";
+            break;
+        case YJDeviceType_iPad2:
+            value = @"iPad 2";
+            break;
+        case YJDeviceType_iPad3:
+            value = @"iPad 3";
+            break;
+        case YJDeviceType_iPad4:
+            value = @"iPad 4";
+            break;
+        case YJDeviceType_iPadAir:
+            value = @"iPad Air";
+            break;
+        case YJDeviceType_iPadAir2:
+            value = @"iPad Air 2";
+            break;
+        case YJDeviceType_iPad5:
+            value = @"iPad 5";
+            break;
+        case YJDeviceType_iPad6:
+            value = @"iPad 6";
+            break;
+        case YJDeviceType_iPadMini:
+            value = @"iPad Mini";
+            break;
+        case YJDeviceType_iPadMini2:
+            value = @"iPad Mini 2";
+            break;
+        case YJDeviceType_iPadMini3:
+            value = @"iPad Mini 3";
+            break;
+        case YJDeviceType_iPadMini4:
+            value = @"iPad Mini 4";
+            break;
+        case YJDeviceType_iPadPro9Inch:
+            value = @"iPad Pro (9.7-inch)";
+            break;
+        case YJDeviceType_iPadPro12Inch:
+            value = @"iPad Pro (12.9-inch)";
+            break;
+        case YJDeviceType_iPadPro12Inch2:
+            value = @"iPad Pro (12.9-inch) 2";
+            break;
+        case YJDeviceType_iPadPro10Inch:
+            value = @"iPad Pro (10.5-inch)";
+            break;
+        case YJDeviceType_homePod:
+            value = @"HomePod";
+            break;
+        default:
+            break;
+    }
+    
+    if ([self yj_isSimulator] == YES) {
+        value = [NSString stringWithFormat:@"Simulator (%@)",value];
+    }
+    
+    return value;
+}
+
 + (NSUInteger)getSysInfo:(uint)typeSpecifier
 {
     size_t size = sizeof(int);
@@ -67,103 +371,13 @@
     return totalspace;
 }
 
-+ (BOOL)yj_isSimulator {
-    if ([[self yj_deviceModelName] containsString:@"Simulator"]) {
-        return YES;
-    }
-    return NO;
-}
-
-#pragma mark 获取当前设备名
-
-+ (NSString*)yj_deviceModelName {
-    struct utsname systemInfo;
-    
-    uname(&systemInfo);
-    NSString *deviceModel = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
-    
-    /**
-     * CDMA电信3G的网络模式
-     * GSM是通用的移动联通电信2g模式
-     * WCDMA是联通3G的网络模式
-     * TD—SCDMA是移动3G
-     * 如果有TD-LTE或者FDD-LTE，则证明支持4g网络
-     */
-    
-    NSDictionary *deviceModelDict = @{
-                                      //iPhone 系列
-                                      @"iPhone1,1":@"iPhone 1G",
-                                      @"iPhone1,2":@"iPhone 3G",
-                                      @"iPhone2,1":@"iPhone 3GS",
-                                      @"iPhone3,1":@"iPhone 4",
-                                      @"iPhone3,2":@"Verizon iPhone 4",
-                                      @"iPhone4,1":@"iPhone 4S",
-                                      @"iPhone5,1":@"iPhone 5",
-                                      @"iPhone5,2":@"iPhone 5",
-                                      @"iPhone5,3":@"iPhone 5C",
-                                      @"iPhone5,4":@"iPhone 5C",
-                                      @"iPhone6,1":@"iPhone 5S",
-                                      @"iPhone6,2":@"iPhone 5S",
-                                      @"iPhone7,1":@"iPhone 6 Plus",
-                                      @"iPhone7,2":@"iPhone 6",
-                                      @"iPhone8,1":@"iPhone 6s",
-                                      @"iPhone8,2":@"iPhone 6s Plus",
-                                      @"iPhone9,1":@"iPhone 7 (CDMA)",
-                                      @"iPhone9,3":@"iPhone 7 (GSM)",
-                                      @"iPhone9,2":@"iPhone 7 Plus (CDMA)",
-                                      @"iPhone9,4":@"iPhone 7 Plus (GSM)",
-                                      
-                                      //iPod 系列
-                                      @"iPod1,1":@"iPod Touch 1G",
-                                      @"iPod2,1":@"iPod Touch 2G",
-                                      @"iPod3,1":@"iPod Touch 3G",
-                                      @"iPod4,1":@"iPod Touch 4G",
-                                      @"iPod5,1":@"iPod Touch 5G",
-                                      
-                                      //iPad 系列
-                                      
-                                      //iPad
-                                      @"iPad1,1":@"iPad",
-                                      @"iPad2,1":@"iPad 2 (WiFi)",
-                                      @"iPad2,2":@"iPad 2 (GSM)",
-                                      @"iPad2,3":@"iPad 2 (CDMA)",
-                                      @"iPad2,4":@"iPad 2 (32nm)",
-                                      @"iPad3,1":@"iPad 3(WiFi)",
-                                      @"iPad3,2":@"iPad 3(CDMA)",
-                                      @"iPad3,3":@"iPad 3(4G)",
-                                      @"iPad3,4":@"iPad 4 (WiFi)",
-                                      @"iPad3,5":@"iPad 4 (4G)",
-                                      @"iPad3,6":@"iPad 4 (CDMA)",
-                                      //iPad mini
-                                      @"iPad2,5":@"iPad mini (WiFi)",
-                                      @"iPad2,6":@"iPad mini (GSM)",
-                                      @"iPad2,7":@"iPad mini (CDMA)",
-                                      @"iPad4,4":@"iPad mini 2",
-                                      @"iPad4,5":@"iPad mini 2",
-                                      @"iPad4,6":@"iPad mini 2",
-                                      @"iPad4,7":@"iPad mini 3",
-                                      @"iPad4,8":@"iPad mini 3",
-                                      @"iPad4,9":@"iPad mini 3",
-                                      //iPad Air
-                                      @"iPad4,1":@"iPad Air",
-                                      @"iPad4,2":@"iPad Air",
-                                      @"iPad4,3":@"iPad Air",
-                                      @"iPad5,3":@"iPad Air 2",
-                                      @"iPad5,4":@"iPad Air 2",
-                                      // 模拟器
-                                      @"i386":@"Simulator(模拟器)",
-                                      @"x86_64":@"Simulator(模拟器)"
-                                      };
-    return  [deviceModelDict objectForKey:deviceModel] ?: deviceModel;
-}
-
 #pragma mark 手机别名： 用户定义的名称
-+ (NSString *)yj_phoneAliases {
++ (NSString *)yj_name {
     return [[UIDevice currentDevice] name];
 }
 
 #pragma mark 设备名称
-+ (NSString *)yj_deviceName {
++ (NSString *)yj_systemName {
     return [[UIDevice currentDevice] systemName];
 }
 
@@ -172,7 +386,7 @@
     return [[UIDevice currentDevice] systemVersion];
 }
 #pragma mark 手机型号
-+ (NSString *)yj_phoneModel {
++ (NSString *)yj_model {
     return [[UIDevice currentDevice] model];
 }
 #pragma mark 地方型号  （国际化区域名称）
