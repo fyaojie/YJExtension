@@ -17,6 +17,8 @@
 
 #import "NSDate+YJExtension.h"
 
+#import "NSData+YJExtension.h"
+
 #import "NSString+YJExtension.h"
 #import "NSString+YJEmoji.h"
 #import "NSString+YJHash.h"
