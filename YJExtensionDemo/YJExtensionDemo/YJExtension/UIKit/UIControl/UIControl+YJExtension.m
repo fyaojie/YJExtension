@@ -55,7 +55,7 @@ static char const * const yj_kSoundsKey = "yj_kSoundsKey";
 - (void)yj_setSoundNamed:(NSString *)name forControlEvent:(UIControlEvents)controlEvent
 {
     // Remove the old UI sound.
-    NSString *oldSoundKey = [NSString stringWithFormat:@"%zd", controlEvent];
+    NSString *oldSoundKey = [NSString stringWithFormat:@"%zd", (unsigned long)controlEvent];
     AVAudioPlayer *oldSound = [self yj_sounds][oldSoundKey];
     [self removeTarget:oldSound action:@selector(play) forControlEvents:controlEvent];
     
@@ -72,7 +72,7 @@ static char const * const yj_kSoundsKey = "yj_kSoundsKey";
     
     // Create and prepare the sound.
     AVAudioPlayer *tapSound = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&error];
-    NSString *controlEventKey = [NSString stringWithFormat:@"%zd", controlEvent];
+    NSString *controlEventKey = [NSString stringWithFormat:@"%zd", (unsigned long)controlEvent];
     NSMutableDictionary *sounds = [self yj_sounds];
     [sounds setObject:tapSound forKey:controlEventKey];
     [tapSound prepareToPlay];

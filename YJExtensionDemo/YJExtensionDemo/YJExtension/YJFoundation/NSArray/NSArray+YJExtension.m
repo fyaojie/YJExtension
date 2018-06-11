@@ -10,13 +10,13 @@
 
 @implementation NSArray (YJExtension)
 
-- (void)each:(void (^)(id, NSUInteger))block {
+- (void)yj_each:(void (^)(id, NSUInteger))block {
     [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         block(obj, idx);
     }];
 }
 
-- (NSArray *)map:(id (^)(id object))block {
+- (NSArray *)yj_map:(id (^)(id object))block {
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:self.count];
     
     for (id object in self) {
@@ -26,13 +26,13 @@
     return array;
 }
 
-- (NSArray *)filter:(BOOL (^)(id object))block {
+- (NSArray *)yj_filter:(BOOL (^)(id object))block {
     return [self filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         return block(evaluatedObject);
     }]];
 }
 
-- (NSArray *)reject:(BOOL (^)(id object))block {
+- (NSArray *)yj_reject:(BOOL (^)(id object))block {
     return [self filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         return !block(evaluatedObject);
     }]];

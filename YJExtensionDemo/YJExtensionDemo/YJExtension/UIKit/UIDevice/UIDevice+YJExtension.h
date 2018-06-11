@@ -164,6 +164,11 @@ typedef enum : NSUInteger {
 + (NSString *)yj_deviceIPAdress;
 
 /**
+ * 获取当前wifi名称
+ */
++ (NSString *)yj_WifiName;
+
+/**
  * 是否存在摄像头
  */
 + (BOOL)yj_hasCamera;

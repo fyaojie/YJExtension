@@ -11,9 +11,23 @@
 @interface NSDictionary (YJExtension)
 
 // 数据便利
-- (void)each:(void (^)(id key, id value))block;
+- (void)yj_each:(void (^)(id key, id value))block;
 // 返回处理后的数据
-- (NSArray *)map:(id (^)(id key, id value))block;
+- (NSArray *)yj_map:(id (^)(id key, id value))block;
+
+@end
+
+@interface NSDictionary (YJJSON)
 // 转json
-- (NSString *)jsonString;
+- (NSString *)yj_JSONString;
+@end
+
+@interface NSDictionary (YJURL)
+
+/**
+ *  @brief  将NSDictionary转换成url 参数字符串
+ *
+ *  @return url 参数字符串
+ */
+- (NSString *)yj_URLQueryString;
 @end

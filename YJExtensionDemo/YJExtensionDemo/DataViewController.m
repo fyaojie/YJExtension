@@ -8,7 +8,7 @@
 
 #import "DataViewController.h"
 #import "YJExtension.h"
-
+//#import "NSDate+YJUtilities.h"
 
 @interface DataViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *submittingButton;
@@ -32,7 +32,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+//    NSLog(@"%ld",[NSDate date].yj_week);
+    NSLog(@"%ld",[NSDate date].yj_weekday);
+//    NSLog(@"%ld",[NSDate date].yj_nthWeekday);
+    
 //    self.textView.yj_maxFontSize = 30;
 //    self.textView.yj_minFontSize = 5;
 //    self.textView.yj_zoomEnabled = YES;

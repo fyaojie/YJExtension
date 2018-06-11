@@ -10,11 +10,12 @@
 
 @interface NSArray (YJExtension)
 
-// 数组便利
-- (void)each:(void (^)(id object, NSUInteger index))block;
-// 返回处理后的数据
-- (NSArray *)map:(id (^)(id object))block;
-// 返回过滤后的数据
-- (NSArray *)filter:(BOOL (^)(id object))block;
-
+/* 数组便利 */
+- (void)yj_each:(void (^)(id object, NSUInteger index))block;
+/* 返回处理后的数据 */
+- (NSArray *)yj_map:(id (^)(id object))block;
+/* 返回条件满足的数据 */
+- (NSArray *)yj_filter:(BOOL (^)(id object))block;
+/* 返回条件满足以外的数据 */
+- (NSArray *)yj_reject:(BOOL (^)(id object))block;
 @end

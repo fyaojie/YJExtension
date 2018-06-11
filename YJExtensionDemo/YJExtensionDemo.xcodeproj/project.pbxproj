@@ -59,6 +59,15 @@
 		18B6ADCE20C92C9A00AB023A /* UIImageView+YJReflect.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6ADCD20C92C9A00AB023A /* UIImageView+YJReflect.m */; };
 		18B6ADD120C92CF600AB023A /* UITextField+YJInputLimit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6ADD020C92CF600AB023A /* UITextField+YJInputLimit.m */; };
 		18B6ADD420C92D2E00AB023A /* UITextField+YJSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6ADD320C92D2E00AB023A /* UITextField+YJSelect.m */; };
+		18B6ADD720CA16C100AB023A /* NSString+YJSimilarity.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6ADD620CA16C100AB023A /* NSString+YJSimilarity.m */; };
+		18B6ADDB20CA1F3900AB023A /* NSObject+YJGCD.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6ADDA20CA1F3900AB023A /* NSObject+YJGCD.m */; };
+		18B6ADDE20CA217200AB023A /* NSObject+YJReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6ADDD20CA217200AB023A /* NSObject+YJReflection.m */; };
+		18B6ADE120CE4E6E00AB023A /* NSObject+YJKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6ADE020CE4E6E00AB023A /* NSObject+YJKVO.m */; };
+		18B6ADE420CE51CD00AB023A /* NSString+YJURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6ADE320CE51CD00AB023A /* NSString+YJURL.m */; };
+		18B6ADE720CE55AD00AB023A /* NSData+YJHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6ADE620CE55AD00AB023A /* NSData+YJHash.m */; };
+		18B6ADEA20CE58D000AB023A /* NSData+YJGZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6ADE920CE58D000AB023A /* NSData+YJGZIP.m */; };
+		18B6ADF020CE703600AB023A /* NSDate+YJChineseCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6ADEF20CE703600AB023A /* NSDate+YJChineseCalendar.m */; };
+		18B6ADF720CE768E00AB023A /* NSNumber+YJRound.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6ADF620CE768E00AB023A /* NSNumber+YJRound.m */; };
 		18EC05572068F493006BA806 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EC05562068F493006BA806 /* AppDelegate.m */; };
 		18EC055A2068F493006BA806 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EC05592068F493006BA806 /* ViewController.m */; };
 		18EC055D2068F493006BA806 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18EC055B2068F493006BA806 /* Main.storyboard */; };
@@ -193,6 +202,24 @@
 		18B6ADD020C92CF600AB023A /* UITextField+YJInputLimit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+YJInputLimit.m"; sourceTree = "<group>"; };
 		18B6ADD220C92D2E00AB023A /* UITextField+YJSelect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+YJSelect.h"; sourceTree = "<group>"; };
 		18B6ADD320C92D2E00AB023A /* UITextField+YJSelect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+YJSelect.m"; sourceTree = "<group>"; };
+		18B6ADD520CA16C100AB023A /* NSString+YJSimilarity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+YJSimilarity.h"; sourceTree = "<group>"; };
+		18B6ADD620CA16C100AB023A /* NSString+YJSimilarity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+YJSimilarity.m"; sourceTree = "<group>"; };
+		18B6ADD920CA1F3900AB023A /* NSObject+YJGCD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YJGCD.h"; sourceTree = "<group>"; };
+		18B6ADDA20CA1F3900AB023A /* NSObject+YJGCD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YJGCD.m"; sourceTree = "<group>"; };
+		18B6ADDC20CA217200AB023A /* NSObject+YJReflection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YJReflection.h"; sourceTree = "<group>"; };
+		18B6ADDD20CA217200AB023A /* NSObject+YJReflection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YJReflection.m"; sourceTree = "<group>"; };
+		18B6ADDF20CE4E6E00AB023A /* NSObject+YJKVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YJKVO.h"; sourceTree = "<group>"; };
+		18B6ADE020CE4E6E00AB023A /* NSObject+YJKVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YJKVO.m"; sourceTree = "<group>"; };
+		18B6ADE220CE51CD00AB023A /* NSString+YJURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+YJURL.h"; sourceTree = "<group>"; };
+		18B6ADE320CE51CD00AB023A /* NSString+YJURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+YJURL.m"; sourceTree = "<group>"; };
+		18B6ADE520CE55AD00AB023A /* NSData+YJHash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+YJHash.h"; sourceTree = "<group>"; };
+		18B6ADE620CE55AD00AB023A /* NSData+YJHash.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+YJHash.m"; sourceTree = "<group>"; };
+		18B6ADE820CE58D000AB023A /* NSData+YJGZIP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+YJGZIP.h"; sourceTree = "<group>"; };
+		18B6ADE920CE58D000AB023A /* NSData+YJGZIP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+YJGZIP.m"; sourceTree = "<group>"; };
+		18B6ADEE20CE703600AB023A /* NSDate+YJChineseCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+YJChineseCalendar.h"; sourceTree = "<group>"; };
+		18B6ADEF20CE703600AB023A /* NSDate+YJChineseCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+YJChineseCalendar.m"; sourceTree = "<group>"; };
+		18B6ADF520CE768E00AB023A /* NSNumber+YJRound.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+YJRound.h"; sourceTree = "<group>"; };
+		18B6ADF620CE768E00AB023A /* NSNumber+YJRound.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+YJRound.m"; sourceTree = "<group>"; };
 		18EC05522068F493006BA806 /* YJExtensionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YJExtensionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18EC05552068F493006BA806 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18EC05562068F493006BA806 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -463,6 +490,8 @@
 		18B6ADA320C92BE100AB023A /* YJFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				18B6ADF120CE74B100AB023A /* NSNumber */,
+				18B6ADD820CA1D1500AB023A /* NSObject */,
 				18B6ADA420C92BE100AB023A /* NSDictionary */,
 				18B6ADA720C92BE100AB023A /* NSData */,
 				18B6ADAA20C92BE100AB023A /* NSString */,
@@ -488,6 +517,10 @@
 			children = (
 				18B6ADA820C92BE100AB023A /* NSData+YJExtension.h */,
 				18B6ADA920C92BE100AB023A /* NSData+YJExtension.m */,
+				18B6ADE520CE55AD00AB023A /* NSData+YJHash.h */,
+				18B6ADE620CE55AD00AB023A /* NSData+YJHash.m */,
+				18B6ADE820CE58D000AB023A /* NSData+YJGZIP.h */,
+				18B6ADE920CE58D000AB023A /* NSData+YJGZIP.m */,
 			);
 			path = NSData;
 			sourceTree = "<group>";
@@ -507,6 +540,10 @@
 				18B6ADB420C92BE100AB023A /* NSString+YJExtension.h */,
 				18B6ADB520C92BE100AB023A /* NSString+YJJudge.h */,
 				18B6ADB620C92BE100AB023A /* NSString+YJMIME.m */,
+				18B6ADD520CA16C100AB023A /* NSString+YJSimilarity.h */,
+				18B6ADD620CA16C100AB023A /* NSString+YJSimilarity.m */,
+				18B6ADE220CE51CD00AB023A /* NSString+YJURL.h */,
+				18B6ADE320CE51CD00AB023A /* NSString+YJURL.m */,
 			);
 			path = NSString;
 			sourceTree = "<group>";
@@ -534,8 +571,32 @@
 			children = (
 				18B6ADBE20C92BE100AB023A /* NSDate+YJExtension.h */,
 				18B6ADBF20C92BE100AB023A /* NSDate+YJExtension.m */,
+				18B6ADEE20CE703600AB023A /* NSDate+YJChineseCalendar.h */,
+				18B6ADEF20CE703600AB023A /* NSDate+YJChineseCalendar.m */,
 			);
 			path = NSDate;
+			sourceTree = "<group>";
+		};
+		18B6ADD820CA1D1500AB023A /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				18B6ADD920CA1F3900AB023A /* NSObject+YJGCD.h */,
+				18B6ADDA20CA1F3900AB023A /* NSObject+YJGCD.m */,
+				18B6ADDC20CA217200AB023A /* NSObject+YJReflection.h */,
+				18B6ADDD20CA217200AB023A /* NSObject+YJReflection.m */,
+				18B6ADDF20CE4E6E00AB023A /* NSObject+YJKVO.h */,
+				18B6ADE020CE4E6E00AB023A /* NSObject+YJKVO.m */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
+		18B6ADF120CE74B100AB023A /* NSNumber */ = {
+			isa = PBXGroup;
+			children = (
+				18B6ADF520CE768E00AB023A /* NSNumber+YJRound.h */,
+				18B6ADF620CE768E00AB023A /* NSNumber+YJRound.m */,
+			);
+			path = NSNumber;
 			sourceTree = "<group>";
 		};
 		18EC05492068F493006BA806 = {
@@ -739,14 +800,21 @@
 				18B6ADCE20C92C9A00AB023A /* UIImageView+YJReflect.m in Sources */,
 				18B6ADD420C92D2E00AB023A /* UITextField+YJSelect.m in Sources */,
 				18B6AD9920C92BAE00AB023A /* UITextView+YJPlaceHolder.m in Sources */,
+				18B6ADF020CE703600AB023A /* NSDate+YJChineseCalendar.m in Sources */,
 				18B6AD7F20C92BAE00AB023A /* UIImage+YJGIF.m in Sources */,
+				18B6ADDE20CA217200AB023A /* NSObject+YJReflection.m in Sources */,
 				18B6ADD120C92CF600AB023A /* UITextField+YJInputLimit.m in Sources */,
+				18B6ADF720CE768E00AB023A /* NSNumber+YJRound.m in Sources */,
+				18B6ADEA20CE58D000AB023A /* NSData+YJGZIP.m in Sources */,
 				18B6ADC220C92BE100AB023A /* NSString+YJEmoji.m in Sources */,
 				18B6AD9C20C92BAE00AB023A /* UIBarButtonItem+YJBadge.m in Sources */,
 				18B6AD8E20C92BAE00AB023A /* UIButton+YJCountDown.m in Sources */,
+				18B6ADE420CE51CD00AB023A /* NSString+YJURL.m in Sources */,
 				18B6AD9020C92BAE00AB023A /* UIButton+YJSubmitting.m in Sources */,
 				18B6ADC120C92BE100AB023A /* NSData+YJExtension.m in Sources */,
 				1865415720BF9F82007D9F26 /* DataViewController.m in Sources */,
+				18B6ADE720CE55AD00AB023A /* NSData+YJHash.m in Sources */,
+				18B6ADD720CA16C100AB023A /* NSString+YJSimilarity.m in Sources */,
 				18B6ADC020C92BE100AB023A /* NSDictionary+YJExtension.m in Sources */,
 				18B6ADC420C92BE100AB023A /* NSString+YJExtension.m in Sources */,
 				18B6AD9D20C92BAE00AB023A /* UIImageView+YJExtension.m in Sources */,
@@ -768,6 +836,7 @@
 				18B6AD9720C92BAE00AB023A /* UIView+YJNib.m in Sources */,
 				18B6ADC820C92BE100AB023A /* NSArray+YJExtension.m in Sources */,
 				18B6AD8720C92BAE00AB023A /* UILabel+YJExtension.m in Sources */,
+				18B6ADDB20CA1F3900AB023A /* NSObject+YJGCD.m in Sources */,
 				18B6AD9320C92BAE00AB023A /* UIWebView+YJSwipeGesture.m in Sources */,
 				18B6AD7E20C92BAE00AB023A /* UIImage+YJSize.m in Sources */,
 				18EC05652068F493006BA806 /* main.m in Sources */,
@@ -784,6 +853,7 @@
 				18B6ADCA20C92BE100AB023A /* NSDate+YJExtension.m in Sources */,
 				18B6AD9F20C92BAE00AB023A /* UINavigationController+YJExtension.m in Sources */,
 				18B6AD8920C92BAE00AB023A /* UILabel+YJAutomaticWriting.m in Sources */,
+				18B6ADE120CE4E6E00AB023A /* NSObject+YJKVO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

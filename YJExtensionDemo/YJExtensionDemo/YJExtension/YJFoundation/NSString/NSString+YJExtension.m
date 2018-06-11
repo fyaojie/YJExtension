@@ -50,12 +50,15 @@
     if ([UIDevice yj_systemVersion].integerValue >= 9.0) {
         return encodedUrl;
     }
-    
+   
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
                                                                                  (CFStringRef)self,
                                                                                  (CFStringRef)charactersToEscape,
                                                                                  NULL,
                                                                                  kCFStringEncodingUTF8));
+#pragma clang diagnostic pop
 }
 
 #pragma mark  去掉首尾空格

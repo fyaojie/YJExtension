@@ -13,6 +13,7 @@
 #import <sys/utsname.h>
 #import <arpa/inet.h>
 #import <ifaddrs.h>
+#import <SystemConfiguration/CaptiveNetwork.h>
 
 @implementation UIDevice (YJExtension)
 
@@ -432,8 +433,36 @@
     return address;
 }
 
+#pragma mark 获取当前wifi名称
++ (NSString *)yj_WifiName
+{
+    NSString *wifiName = nil;
+    CFArrayRef wifiInterfaces = CNCopySupportedInterfaces();
+    if (!wifiInterfaces) {
+        return nil;
+    }
+    
+    NSArray *interfaces = (__bridge NSArray *)wifiInterfaces;
+    for (NSString *interfaceName in interfaces) {
+        CFDictionaryRef dictRef = CNCopyCurrentNetworkInfo((__bridge CFStringRef)(interfaceName));
+        
+        if (dictRef) {
+            NSDictionary *networkInfo = (__bridge NSDictionary *)dictRef;
+            
+            wifiName = [networkInfo objectForKey:(__bridge NSString *)kCNNetworkInfoKeySSID];
+            
+            CFRelease(dictRef);
+        }
+    }
+    
+    CFRelease(wifiInterfaces);
+    return wifiName;
+}
+
+
 + (BOOL)yj_hasCamera
 {
     return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
 }
+
 @end

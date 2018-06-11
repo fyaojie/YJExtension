@@ -14,3 +14,14 @@
  */
 - (NSString *)yj_applicationSize;
 @end
+
+@interface UIApplication (YJAPPIcon)
+/**
+ icon 路径
+ */
+- (NSString*)yj_appIconPath;
+/**
+ icon 图标
+ */
+- (UIImage*)yj_appIcon;
+@end
