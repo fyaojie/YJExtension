@@ -14,6 +14,7 @@
 #import <arpa/inet.h>
 #import <ifaddrs.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
+#import "NSString+YJProject.h"
 
 @implementation UIDevice (YJExtension)
 
@@ -397,7 +398,74 @@
 
 #pragma mark 获取设备唯一标识符
 + (NSString *)yj_UUID {
-    return [[UIDevice currentDevice] identifierForVendor].UUIDString;
+    NSString *KEY = [NSString stringWithFormat:@"%@UUID",[NSString yj_bundleId]];
+    NSMutableDictionary *UUIDKeyChain = (NSMutableDictionary *)[self load:KEY];
+    NSString * uuid = [NSString string];
+    if (![UUIDKeyChain objectForKey:@"uuidkey"]) {
+        uuid = [self UUID];
+        NSMutableDictionary * dic = [NSMutableDictionary dictionary];
+        [dic setObject:uuid forKey:@"uuidkey"];
+        [self save:KEY data:dic];
+    }else{
+        uuid = [UUIDKeyChain objectForKey:@"uuidkey"];
+    }
+    
+    return uuid;
+    
+//    return [[UIDevice currentDevice] identifierForVendor].UUIDString;
+}
+
+/// 设备UUID
++ (NSString *)UUID {
+    CFUUIDRef uuidObj = CFUUIDCreate(nil);
+    NSString *uuidString = (__bridge_transfer NSString*)CFUUIDCreateString(nil, uuidObj);
+    CFRelease(uuidObj);
+    return uuidString;
+}
+
+/// 保存进钥匙串
++(void)save:(NSString *)service data:(id)data {
+    //Get search dictionary
+    NSMutableDictionary *keychainQuery = [self getKeychainQuery:service];
+    //Delete old item before add new item
+    SecItemDelete((CFDictionaryRef)keychainQuery);
+    //Add new object to search dictionary(Attention:the data format)
+    [keychainQuery setObject:[NSKeyedArchiver archivedDataWithRootObject:data] forKey:(id)kSecValueData];
+    //Add item to keychain with the search dictionary
+    SecItemAdd((CFDictionaryRef)keychainQuery, NULL);
+}
+
++(NSMutableDictionary *)getKeychainQuery:(NSString *)service {
+    return [NSMutableDictionary dictionaryWithObjectsAndKeys:
+            (id)kSecClassGenericPassword,(id)kSecClass,
+            service, (id)kSecAttrService,
+            service, (id)kSecAttrAccount,
+            (id)kSecAttrAccessibleAfterFirstUnlock,(id)kSecAttrAccessible,nil];
+}
+
++(id)load:(NSString *)service {
+    id ret = nil;
+    NSMutableDictionary *keychainQuery = [self getKeychainQuery:service];
+    [keychainQuery setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnData];
+    [keychainQuery setObject:(id)kSecMatchLimitOne forKey:(id)kSecMatchLimit];
+    CFDataRef keyData = NULL;
+    if (SecItemCopyMatching((CFDictionaryRef)keychainQuery, (CFTypeRef *)&keyData) == noErr) {
+        @try {
+            ret = [NSKeyedUnarchiver unarchiveObjectWithData:(__bridge NSData *)keyData];
+        } @catch (NSException *e) {
+            NSLog(@"Unarchive of %@ failed: %@", service, e);
+        } @finally {
+        }
+    }
+    if (keyData)
+    CFRelease(keyData);
+    return ret;
+}
+
++ (void)yj_deleteUUID{
+    NSString *KEY = [NSString stringWithFormat:@"%@UUID",[NSString yj_bundleId]];
+    NSMutableDictionary *keychainQuery = [self getKeychainQuery:KEY];
+    SecItemDelete((CFDictionaryRef)keychainQuery);
 }
 
 #pragma mark 获取内网IP

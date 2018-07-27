@@ -154,9 +154,17 @@ typedef enum : NSUInteger {
 + (NSString *)yj_localizedModel;
 
 /**
- * 获取设备唯一标识符 例如：02FA87BD-B8A9-48AD-A9F2-93376C80AF33
+ * 获取设备唯一标识符 例如：02FA87BD-B8A9-48AD-A9F2-93376C80AF33,
+ * 默认会自动保存进手机的钥匙串
+ * 如果该软件被卸载,重新安装UUID保持不变
+ * 钥匙串的key值使用项目名+UUID
  */
 + (NSString *)yj_UUID;
+
+/**
+ * 从钥匙串中删除该UUID
+ */
++ (void)yj_deleteUUID;
 
 /**
  * 获取内网IP 例如：192.168.1.104
