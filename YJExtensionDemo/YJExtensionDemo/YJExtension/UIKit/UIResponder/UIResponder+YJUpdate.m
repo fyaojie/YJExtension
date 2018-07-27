@@ -13,7 +13,8 @@
 - (void)yj_openAppURLForIdentifier:(NSInteger)identifier {
     NSString* appURLString = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%li", (long)identifier];
     NSURL *URL = [NSURL URLWithString:appURLString];
-    if ([[UIDevice currentDevice] systemVersion].floatValue >= 10) {
+    
+    if (@available(iOS 10, *)) {
         [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:^(BOOL success) {
             
         }];
