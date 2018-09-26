@@ -27,40 +27,45 @@
 }
 
 + (YJDeviceType)yj_deviceTypeWithIdentifier:(NSString *)identifier {
-   NSArray<NSArray<NSString *> *> *array = @[@[@"iPod5,1"],
-                                              @[@"iPod7,1"],
-                                              @[@"iPhone3,1", @"iPhone3,2", @"iPhone3,3"],
-                                              @[@"iPhone4,1"],
-                                              @[@"iPhone5,1", @"iPhone5,2"],
-                                              @[@"iPhone5,3", @"iPhone5,4"],
-                                              @[@"iPhone6,1", @"iPhone6,2"],
-                                              @[@"iPhone7,2"],
-                                              @[@"iPhone7,1"],
-                                              @[@"iPhone8,1"],
-                                            @[@"iPhone8,2"],
-                                            @[@"iPhone9,1", @"iPhone9,3"],
-                                            @[@"iPhone9,2", @"iPhone9,4"],
-                                            @[@"iPhone8,4"],
-                                            @[@"iPhone10,1", @"iPhone10,4"],
-                                            @[@"iPhone10,2", @"iPhone10,5"],
-                                            @[@"iPhone10,3", @"iPhone10,6"],
-                                            @[@"iPad2,1", @"iPad2,2", @"iPad2,3", @"iPad2,4"],
-                                            @[@"iPad3,1", @"iPad3,2", @"iPad3,3"],
-                                            @[@"iPad3,4", @"iPad3,5", @"iPad3,6"],
-                                            @[@"iPad4,1", @"iPad4,2", @"iPad4,3"],
-                                            @[@"iPad5,3", @"iPad5,4"],
-                                            @[@"iPad6,11", @"iPad6,12"],
-                                            @[@"iPad7,5", @"iPad7,6"],
-                                            @[@"iPad2,5", @"iPad2,6", @"iPad2,7"],
-                                            @[@"iPad4,4", @"iPad4,5", @"iPad4,6"],
-                                            @[@"iPad4,7", @"iPad4,8", @"iPad4,9"],
-                                            @[@"iPad5,1", @"iPad5,2"],
-                                            @[@"iPad6,3", @"iPad6,4"],
-                                            @[@"iPad6,7", @"iPad6,8"],
-                                            @[@"iPad7,1", @"iPad7,2"],
-                                            @[@"iPad7,3", @"iPad7,4"],
-                                            @[@"AudioAccessory1,1"],
-                                            @[@"i386", @"x86_64"],
+    NSArray<NSArray<NSString *> *> *array = @[@[@"iPod5,1"], // iPod touch (5th generation)
+                                              @[@"iPod7,1"], // iPod touch (6th generation)
+                                              
+                                              @[@"iPhone3,1", @"iPhone3,2", @"iPhone3,3"], // iPhone 4
+                                              @[@"iPhone4,1"], // iPhone 4S
+                                              @[@"iPhone5,1", @"iPhone5,2"], // iPhone 5
+                                              @[@"iPhone5,3", @"iPhone5,4"], // iPhone 5c
+                                              @[@"iPhone6,1", @"iPhone6,2"], // iPhone 5s
+                                              @[@"iPhone7,2"], // iPhone 6
+                                              @[@"iPhone7,1"], // iPhone 6 Plus
+                                              @[@"iPhone8,1"], // iPhone 6s
+                                            @[@"iPhone8,2"], // iPhone 6s Plus
+                                            @[@"iPhone9,1", @"iPhone9,3"], // iPhone 7
+                                            @[@"iPhone9,2", @"iPhone9,4"], // iPhone 7 Plus
+                                            @[@"iPhone8,4"], // iPhone SE
+                                            @[@"iPhone10,1", @"iPhone10,4"], // iPhone 8
+                                            @[@"iPhone10,2", @"iPhone10,5"], // iPhone 8 Plus
+                                            @[@"iPhone10,3", @"iPhone10,6"], // iPhone X
+                                             @[@"iPhone11,2"], // iPhone XS
+                                             @[@"iPhone11,4", @"iPhone11,6"], //iPhone XS Max
+                                             @[@"iPhone11,8"], // iPhone XR
+                                             
+                                            @[@"iPad2,1", @"iPad2,2", @"iPad2,3", @"iPad2,4"], // iPad 2
+                                            @[@"iPad3,1", @"iPad3,2", @"iPad3,3"], // iPad (3rd generation)
+                                            @[@"iPad3,4", @"iPad3,5", @"iPad3,6"], // iPad (4th generation)
+                                            @[@"iPad4,1", @"iPad4,2", @"iPad4,3"], // iPad Air
+                                            @[@"iPad5,3", @"iPad5,4"], // iPad Air 2
+                                            @[@"iPad6,11", @"iPad6,12"], // iPad (5th generation)
+                                            @[@"iPad7,5", @"iPad7,6"], // iPad (6th generation)
+                                            @[@"iPad2,5", @"iPad2,6", @"iPad2,7"], // iPad mini
+                                            @[@"iPad4,4", @"iPad4,5", @"iPad4,6"], // iPad mini 2
+                                            @[@"iPad4,7", @"iPad4,8", @"iPad4,9"], // iPad mini 3
+                                            @[@"iPad5,1", @"iPad5,2"], // iPad mini 4
+                                            @[@"iPad6,3", @"iPad6,4"], // iPad Pro (9.7-inch)
+                                            @[@"iPad6,7", @"iPad6,8"], // iPad Pro (12.9-inch)
+                                            @[@"iPad7,1", @"iPad7,2"], // iPad Pro (12.9-inch, 2nd generation)
+                                            @[@"iPad7,3", @"iPad7,4"], // iPad Pro (10.5-inch)
+                                            @[@"AudioAccessory1,1",@"AudioAccessory1,2"], // HomePod
+                                            @[@"i386", @"x86_64"], // 模拟器
                                             ];
     __block YJDeviceType type = YJDeviceType_unknown;
     [array enumerateObjectsUsingBlock:^(NSArray<NSString *> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -110,7 +115,11 @@
         [self yj_deviceType] == YJDeviceType_iPhoneSE ||
         [self yj_deviceType] == YJDeviceType_iPhone8 ||
         [self yj_deviceType] == YJDeviceType_iPhone8Plus ||
-        [self yj_deviceType] == YJDeviceType_iPhoneX) {
+        [self yj_deviceType] == YJDeviceType_iPhoneX ||
+        [self yj_deviceType] == YJDeviceType_iPhoneXS ||
+        [self yj_deviceType] == YJDeviceType_iPhoneXSMax ||
+        [self yj_deviceType] == YJDeviceType_iPhoneXR
+        ) {
         return YES;
     }
     return NO;
@@ -172,11 +181,17 @@
             return 2/3.f;
             break;
         case YJDeviceType_iPhoneX:
+        case YJDeviceType_iPhoneXS:
+        case YJDeviceType_iPhoneXSMax:
+            return 9/18.f;
+            break;
+        case YJDeviceType_iPhoneXR:
             return 9/19.5f;
             break;
         case YJDeviceType_homePod:
             return 4/5.f;
             break;
+            
         case YJDeviceType_iPad2:
         case YJDeviceType_iPad3:
         case YJDeviceType_iPad4:
@@ -263,6 +278,16 @@
         case YJDeviceType_iPhoneX:
             value = @"iPhone X";
             break;
+        case YJDeviceType_iPhoneXS:
+            value = @"iPhone XS";
+            break;
+        case YJDeviceType_iPhoneXSMax:
+            value = @"iPhone XS Max";
+            break;
+        case YJDeviceType_iPhoneXR:
+            value = @"iPhone XR";
+            break;
+            
         case YJDeviceType_iPad2:
             value = @"iPad 2";
             break;
@@ -308,6 +333,7 @@
         case YJDeviceType_iPadPro10Inch:
             value = @"iPad Pro (10.5-inch)";
             break;
+            
         case YJDeviceType_homePod:
             value = @"HomePod";
             break;
@@ -322,8 +348,7 @@
     return value;
 }
 
-+ (NSUInteger)getSysInfo:(uint)typeSpecifier
-{
++ (NSUInteger)getSysInfo:(uint)typeSpecifier {
     size_t size = sizeof(int);
     int result;
     int mib[2] = {CTL_HW, typeSpecifier};
@@ -331,13 +356,13 @@
     return (NSUInteger)result;
 }
 
-+ (NSUInteger)yj_totalMemoryBytes
-{
+#pragma mark 手机内存总量
++ (NSUInteger)yj_totalMemoryBytes {
     return [self getSysInfo:HW_PHYSMEM];
 }
 
-+ (NSUInteger)yj_freeMemoryBytes
-{
+#pragma mark 手机可用内存
++ (NSUInteger)yj_freeMemoryBytes {
     mach_port_t host_port = mach_host_self();
     mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
     vm_size_t pagesize;
@@ -351,8 +376,8 @@
     return mem_free;
 }
 
-+ (long long)yj_freeDiskSpaceBytes
-{
+#pragma mark 手机硬盘空闲空间
++ (long long)yj_freeDiskSpaceBytes {
     struct statfs buf;
     long long freespace;
     freespace = 0;
@@ -362,8 +387,8 @@
     return freespace;
 }
 
-+ (long long)yj_totalDiskSpaceBytes
-{
+#pragma mark 获取手机硬盘总空间
++ (long long)yj_totalDiskSpaceBytes {
     struct statfs buf;
     long long totalspace;
     totalspace = 0;
@@ -411,8 +436,6 @@
     }
     
     return uuid;
-    
-//    return [[UIDevice currentDevice] identifierForVendor].UUIDString;
 }
 
 /// 设备UUID
@@ -424,7 +447,7 @@
 }
 
 /// 保存进钥匙串
-+(void)save:(NSString *)service data:(id)data {
++ (void)save:(NSString *)service data:(id)data {
     //Get search dictionary
     NSMutableDictionary *keychainQuery = [self getKeychainQuery:service];
     //Delete old item before add new item
@@ -435,7 +458,7 @@
     SecItemAdd((CFDictionaryRef)keychainQuery, NULL);
 }
 
-+(NSMutableDictionary *)getKeychainQuery:(NSString *)service {
++ (NSMutableDictionary *)getKeychainQuery:(NSString *)service {
     return [NSMutableDictionary dictionaryWithObjectsAndKeys:
             (id)kSecClassGenericPassword,(id)kSecClass,
             service, (id)kSecAttrService,
@@ -443,7 +466,7 @@
             (id)kSecAttrAccessibleAfterFirstUnlock,(id)kSecAttrAccessible,nil];
 }
 
-+(id)load:(NSString *)service {
++ (id)load:(NSString *)service {
     id ret = nil;
     NSMutableDictionary *keychainQuery = [self getKeychainQuery:service];
     [keychainQuery setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnData];
@@ -462,15 +485,14 @@
     return ret;
 }
 
-+ (void)yj_deleteUUID{
++ (void)yj_deleteUUID {
     NSString *KEY = [NSString stringWithFormat:@"%@UUID",[NSString yj_bundleId]];
     NSMutableDictionary *keychainQuery = [self getKeychainQuery:KEY];
     SecItemDelete((CFDictionaryRef)keychainQuery);
 }
 
 #pragma mark 获取内网IP
-+ (NSString *)yj_deviceIPAdress
-{
++ (NSString *)yj_deviceIPAdress {
     NSString *address = @"an error occurred when obtaining ip address";
     struct ifaddrs *interfaces = NULL;
     struct ifaddrs *temp_addr = NULL;
@@ -478,9 +500,7 @@
     
     success = getifaddrs(&interfaces);
     
-    if (success == 0)
-    { // 0 表示获取成功
-        
+    if (success == 0) { // 0 表示获取成功
         temp_addr = interfaces;
         while (temp_addr != NULL)
         {
@@ -502,14 +522,12 @@
 }
 
 #pragma mark 获取当前wifi名称
-+ (NSString *)yj_WifiName
-{
++ (NSString *)yj_WifiName {
     NSString *wifiName = nil;
     CFArrayRef wifiInterfaces = CNCopySupportedInterfaces();
     if (!wifiInterfaces) {
         return nil;
     }
-    
     NSArray *interfaces = (__bridge NSArray *)wifiInterfaces;
     for (NSString *interfaceName in interfaces) {
         CFDictionaryRef dictRef = CNCopyCurrentNetworkInfo((__bridge CFStringRef)(interfaceName));
@@ -522,14 +540,12 @@
             CFRelease(dictRef);
         }
     }
-    
     CFRelease(wifiInterfaces);
     return wifiName;
 }
 
-
-+ (BOOL)yj_hasCamera
-{
+#pragma mark 是否存在摄像头
++ (BOOL)yj_hasCamera{
     return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
 }
 

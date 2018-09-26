@@ -1,2 +1,2 @@
 # YJExtension
-重在学习cocopods支持
+常用的分类文件，帮助你便捷式开发

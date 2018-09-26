@@ -27,7 +27,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    NSLog(@"%@",[NSDate yj_dateWithTimestamp:1527747855]);
-    //  随便加点东西,本来去掉了警告,却被提示版本重复,更新一下
+    
+    NSLog(@"%@",[UIDevice yj_description]);
+    
+    
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
 }
 

@@ -27,6 +27,10 @@ typedef enum : NSUInteger {
     YJDeviceType_iPhone8,
     YJDeviceType_iPhone8Plus,
     YJDeviceType_iPhoneX,
+    YJDeviceType_iPhoneXS,
+    YJDeviceType_iPhoneXSMax,
+    YJDeviceType_iPhoneXR,
+    
     YJDeviceType_iPad2,
     YJDeviceType_iPad3,
     YJDeviceType_iPad4,
@@ -42,6 +46,7 @@ typedef enum : NSUInteger {
     YJDeviceType_iPadPro12Inch,
     YJDeviceType_iPadPro12Inch2,
     YJDeviceType_iPadPro10Inch,
+    
     YJDeviceType_homePod
 } YJDeviceType;
 
