@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "YJExtension"
-  s.version      = "1.3.0"
+  s.version      = "1.3.1"
   s.summary      = "常用分类框架"
 
   s.description  = "开发中常用的分类集合，协助你快速开发"
