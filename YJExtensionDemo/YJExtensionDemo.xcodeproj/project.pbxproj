@@ -29,8 +29,6 @@
 		18B6AD8F20C92BAE00AB023A /* UIButton+YJImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6AD4E20C92BAE00AB023A /* UIButton+YJImagePosition.m */; };
 		18B6AD9020C92BAE00AB023A /* UIButton+YJSubmitting.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6AD5020C92BAE00AB023A /* UIButton+YJSubmitting.m */; };
 		18B6AD9120C92BAE00AB023A /* UIColor+YJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6AD5320C92BAE00AB023A /* UIColor+YJExtension.m */; };
-		18B6AD9220C92BAE00AB023A /* UIWebView+YJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6AD5620C92BAE00AB023A /* UIWebView+YJExtension.m */; };
-		18B6AD9320C92BAE00AB023A /* UIWebView+YJSwipeGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6AD5720C92BAE00AB023A /* UIWebView+YJSwipeGesture.m */; };
 		18B6AD9420C92BAE00AB023A /* UIView+YJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6AD5A20C92BAE00AB023A /* UIView+YJExtension.m */; };
 		18B6AD9520C92BAE00AB023A /* UIView+YJFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6AD5B20C92BAE00AB023A /* UIView+YJFrame.m */; };
 		18B6AD9620C92BAE00AB023A /* UIView+YJGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6AD6020C92BAE00AB023A /* UIView+YJGestureRecognizer.m */; };
@@ -140,10 +138,6 @@
 		18B6AD5020C92BAE00AB023A /* UIButton+YJSubmitting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+YJSubmitting.m"; sourceTree = "<group>"; };
 		18B6AD5220C92BAE00AB023A /* UIColor+YJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+YJExtension.h"; sourceTree = "<group>"; };
 		18B6AD5320C92BAE00AB023A /* UIColor+YJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YJExtension.m"; sourceTree = "<group>"; };
-		18B6AD5520C92BAE00AB023A /* UIWebView+YJSwipeGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+YJSwipeGesture.h"; sourceTree = "<group>"; };
-		18B6AD5620C92BAE00AB023A /* UIWebView+YJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+YJExtension.m"; sourceTree = "<group>"; };
-		18B6AD5720C92BAE00AB023A /* UIWebView+YJSwipeGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+YJSwipeGesture.m"; sourceTree = "<group>"; };
-		18B6AD5820C92BAE00AB023A /* UIWebView+YJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+YJExtension.h"; sourceTree = "<group>"; };
 		18B6AD5A20C92BAE00AB023A /* UIView+YJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YJExtension.m"; sourceTree = "<group>"; };
 		18B6AD5B20C92BAE00AB023A /* UIView+YJFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YJFrame.m"; sourceTree = "<group>"; };
 		18B6AD5C20C92BAE00AB023A /* UIView+YJNib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YJNib.h"; sourceTree = "<group>"; };
@@ -283,7 +277,6 @@
 				18B6AD4320C92BAE00AB023A /* UIResponder */,
 				18B6AD4620C92BAE00AB023A /* UIButton */,
 				18B6AD5120C92BAE00AB023A /* UIColor */,
-				18B6AD5420C92BAE00AB023A /* UIWebView */,
 				18B6AD5920C92BAE00AB023A /* UIView */,
 				18B6AD6220C92BAE00AB023A /* UITextView */,
 				18B6AD6720C92BAE00AB023A /* UIDevice */,
@@ -384,17 +377,6 @@
 				18B6AD5320C92BAE00AB023A /* UIColor+YJExtension.m */,
 			);
 			path = UIColor;
-			sourceTree = "<group>";
-		};
-		18B6AD5420C92BAE00AB023A /* UIWebView */ = {
-			isa = PBXGroup;
-			children = (
-				18B6AD5520C92BAE00AB023A /* UIWebView+YJSwipeGesture.h */,
-				18B6AD5620C92BAE00AB023A /* UIWebView+YJExtension.m */,
-				18B6AD5720C92BAE00AB023A /* UIWebView+YJSwipeGesture.m */,
-				18B6AD5820C92BAE00AB023A /* UIWebView+YJExtension.h */,
-			);
-			path = UIWebView;
 			sourceTree = "<group>";
 		};
 		18B6AD5920C92BAE00AB023A /* UIView */ = {
@@ -826,7 +808,6 @@
 				18B6AD8F20C92BAE00AB023A /* UIButton+YJImagePosition.m in Sources */,
 				18B6AD8120C92BAE00AB023A /* UIImage+YJColor.m in Sources */,
 				18B6AD8A20C92BAE00AB023A /* UIApplication+YJExtension.m in Sources */,
-				18B6AD9220C92BAE00AB023A /* UIWebView+YJExtension.m in Sources */,
 				18B6AD9420C92BAE00AB023A /* UIView+YJExtension.m in Sources */,
 				18B6ADC320C92BE100AB023A /* NSString+YJHash.m in Sources */,
 				18B6AD8620C92BAE00AB023A /* UIWindow+YJExtension.m in Sources */,
@@ -837,7 +818,6 @@
 				18B6ADC820C92BE100AB023A /* NSArray+YJExtension.m in Sources */,
 				18B6AD8720C92BAE00AB023A /* UILabel+YJExtension.m in Sources */,
 				18B6ADDB20CA1F3900AB023A /* NSObject+YJGCD.m in Sources */,
-				18B6AD9320C92BAE00AB023A /* UIWebView+YJSwipeGesture.m in Sources */,
 				18B6AD7E20C92BAE00AB023A /* UIImage+YJSize.m in Sources */,
 				18EC05652068F493006BA806 /* main.m in Sources */,
 				18B6AD8320C92BAE00AB023A /* UIImage+YJOrientation.m in Sources */,

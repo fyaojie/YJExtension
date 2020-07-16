@@ -9,9 +9,6 @@
 #ifndef YJUIKit_h
 #define YJUIKit_h
 
-#import "UIWebView+YJExtension.h" // 常用方法
-#import "UIWebView+YJSwipeGesture.h" // 返回前进手势
-
 #import "UIResponder+YJUpdate.h" // 跳转到itunes某个id的程序
 
 #import "UIImageView+YJExtension.h"
