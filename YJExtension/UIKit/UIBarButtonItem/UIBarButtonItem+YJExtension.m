@@ -7,8 +7,8 @@
 //
 
 #import "UIBarButtonItem+YJExtension.h"
-#import "UIImage+YJExtension.h"
-#import "UIControl+YJExtension.h"
+#import <UIImage+YJExtension.h>
+#import <UIControl+YJExtension.h>
 
 @implementation UIBarButtonItem (YJExtension)
 

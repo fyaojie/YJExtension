@@ -14,7 +14,7 @@
 #import <arpa/inet.h>
 #import <ifaddrs.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
-#import "NSString+YJProject.h"
+#import <NSString+YJProject.h>
 
 @implementation UIDevice (YJExtension)
 

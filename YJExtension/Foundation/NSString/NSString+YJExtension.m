@@ -7,7 +7,7 @@
 //
 
 #import "NSString+YJExtension.h"
-#import "UIDevice+YJExtension.h"
+#import <UIDevice+YJExtension.h>
 
 @implementation NSString (YJExtension)
 
