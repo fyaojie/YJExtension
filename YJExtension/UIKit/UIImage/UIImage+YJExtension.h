@@ -27,7 +27,7 @@
  *
  *  @return 获得灰度图片
  */
-+ (UIImage*)yj_covertToGrayImageFromImage:(UIImage*)sourceImage;
++ (nullable UIImage *)yj_covertToGrayImageFromImage:(UIImage *_Nonnull)sourceImage;
 
 /**
  *  @brief  合并两个图片
@@ -37,7 +37,7 @@
  *
  *  @return 合并后图片
  */
-+ (UIImage*)yj_mergeImage:(UIImage*)firstImage withImage:(UIImage*)secondImage;
++ (UIImage *_Nonnull)yj_mergeImage:(UIImage *_Nonnull)firstImage withImage:(UIImage *_Nonnull)secondImage;
 
 /**
  *  返回带有圆角和边框的图片

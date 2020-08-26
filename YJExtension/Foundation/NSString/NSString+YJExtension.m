@@ -7,7 +7,6 @@
 //
 
 #import "NSString+YJExtension.h"
-#import <UIDevice+YJExtension.h>
 
 @implementation NSString (YJExtension)
 
@@ -47,7 +46,7 @@
     NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:charactersToEscape] invertedSet];
     NSString *encodedUrl = [self stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
     
-    if ([UIDevice yj_systemVersion].integerValue >= 9.0) {
+    if ([[UIDevice currentDevice] systemVersion].integerValue >= 9.0) {
         return encodedUrl;
     }
    

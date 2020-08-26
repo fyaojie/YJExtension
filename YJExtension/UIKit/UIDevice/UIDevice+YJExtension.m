@@ -14,7 +14,7 @@
 #import <arpa/inet.h>
 #import <ifaddrs.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
-#import <NSString+YJProject.h>
+//#import <NSString+YJProject.h>
 
 @implementation UIDevice (YJExtension)
 
@@ -423,7 +423,7 @@
 
 #pragma mark 获取设备唯一标识符
 + (NSString *)yj_UUID {
-    NSString *KEY = [NSString stringWithFormat:@"%@UUID",[NSString yj_bundleId]];
+    NSString *KEY = [NSString stringWithFormat:@"%@UUID",[self yj_bundleId]];
     NSMutableDictionary *UUIDKeyChain = (NSMutableDictionary *)[self load:KEY];
     NSString * uuid = [NSString string];
     if (![UUIDKeyChain objectForKey:@"uuidkey"]) {
@@ -486,10 +486,15 @@
 }
 
 + (void)yj_deleteUUID {
-    NSString *KEY = [NSString stringWithFormat:@"%@UUID",[NSString yj_bundleId]];
+    NSString *KEY = [NSString stringWithFormat:@"%@UUID",[self yj_bundleId]];
     NSMutableDictionary *keychainQuery = [self getKeychainQuery:KEY];
     SecItemDelete((CFDictionaryRef)keychainQuery);
 }
+
++ (NSString *)yj_bundleId {
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+}
+
 
 #pragma mark 获取内网IP
 + (NSString *)yj_deviceIPAdress {

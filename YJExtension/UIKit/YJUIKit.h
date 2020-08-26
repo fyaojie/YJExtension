@@ -20,7 +20,6 @@
 
 #import "UIApplication+YJExtension.h" // 整个程序所占内存
 
-#import "UIImage+YJSize.h" // 通过网络地址获取图片尺寸
 #import "UIImage+YJGIF.h" // GIF
 #import "UIImage+YJAlpha.h" // 透明度
 #import "UIImage+YJColor.h" // 颜色生成图片
@@ -56,7 +55,6 @@
 #import "UIControl+YJExtension.h" // 声音，事件触发
 
 #import "UIBarButtonItem+YJBadge.h" // 角标
-#import "UIBarButtonItem+YJExtension.h" // 导航按钮创建
 
 #import "UINavigationController+YJStackManager.h" // 栈管理
 #import "UINavigationController+YJExtension.h" // 过渡动画

@@ -44,7 +44,7 @@
  *  @return 获得灰度图片
  */
 
-+ (UIImage*)yj_covertToGrayImageFromImage:(UIImage*)sourceImage
++ (UIImage *)yj_covertToGrayImageFromImage:(UIImage *)sourceImage
 {
     int width = sourceImage.size.width;
     int height = sourceImage.size.height;

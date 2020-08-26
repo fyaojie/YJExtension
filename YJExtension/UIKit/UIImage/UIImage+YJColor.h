@@ -16,7 +16,7 @@
  *
  *  @return 生成的图片
  */
-+ (nullable UIImage*)yj_imageWithColor:(nullable UIColor *)color;
++ (nullable UIImage *)yj_imageWithColor:(nullable UIColor *)color;
 
 /**
  *  根据颜色生成纯色图片
@@ -26,7 +26,7 @@
  *
  *  @return 图片
  */
-+ (UIImage*)yj_imageWithColor:(UIColor *)color size:(CGSize)size;
++ (UIImage *_Nullable)yj_imageWithColor:(UIColor *_Nullable)color size:(CGSize)size;
 
 /**
  *  生成一个颜色渐变的背景图
@@ -36,7 +36,7 @@
  *
  *  @return 生成的图片
  */
-+ (nullable UIImage*)yj_gradientImage:(nullable NSArray<UIColor *> *)colors withFrame: (CGRect)frame;
++ (nullable UIImage *)yj_gradientImage:(nullable NSArray<UIColor *> *)colors withFrame: (CGRect)frame;
 
 /**
  *  利用CAGradientLayer创建颜色渐变的图层
