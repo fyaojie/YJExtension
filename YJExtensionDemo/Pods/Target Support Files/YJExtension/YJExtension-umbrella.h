@@ -23,6 +23,7 @@
 #import "NSNumber+YJRound.h"
 #import "NSObject+YJGCD.h"
 #import "NSObject+YJKVO.h"
+#import "NSObject+YJLog.h"
 #import "NSObject+YJReflection.h"
 #import "NSString+YJEmoji.h"
 #import "NSString+YJExtension.h"
