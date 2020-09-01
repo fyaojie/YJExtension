@@ -11,29 +11,13 @@
 
 @implementation UIImage (YJExtension)
 
-+ (UIImage *)yj_captureWithView:(UIView *)view
-{
++ (UIImage *)yj_captureWithView:(UIView *)view {
+    // 下面方法，第一个参数表示区域大小。第二个参数表示是否是非透明的。如果需要显示半透明效果，需要传NO，否则传YES。第三个参数就是屏幕密度了，关键就是第三个参数 [UIScreen mainScreen].scale。
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, [UIScreen mainScreen].scale);
-    
-    // IOS7及其后续版本
-    if ([self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
-                                    [self methodSignatureForSelector:
-                                     @selector(drawViewHierarchyInRect:afterScreenUpdates:)]];
-        [invocation setTarget:self];
-        [invocation setSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)];
-        CGRect arg2 = view.bounds;
-        BOOL arg3 = YES;
-        [invocation setArgument:&arg2 atIndex:2];
-        [invocation setArgument:&arg3 atIndex:3];
-        [invocation invoke];
-    } else { // IOS7之前的版本
-        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    }
-    
-    UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    return screenshot;
+    return image;
 }
 
 /**
@@ -44,8 +28,7 @@
  *  @return 获得灰度图片
  */
 
-+ (UIImage *)yj_covertToGrayImageFromImage:(UIImage *)sourceImage
-{
++ (UIImage *)yj_covertToGrayImageFromImage:(UIImage *)sourceImage {
     int width = sourceImage.size.width;
     int height = sourceImage.size.height;
     

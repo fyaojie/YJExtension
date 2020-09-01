@@ -1,6 +1,6 @@
 {
   "name": "YJExtension",
-  "version": "1.4.0",
+  "version": "1.4.2",
   "summary": "常用分类框架",
   "description": "开发中常用的分类集合，协助你快速开发",
   "homepage": "https://github.com/0dreamboy/YJExtension",
@@ -16,7 +16,7 @@
   },
   "source": {
     "git": "https://github.com/0dreamboy/YJExtension.git",
-    "tag": "1.4.0"
+    "tag": "1.4.2"
   },
   "source_files": "YJExtension/*.{h,m}",
   "subspecs": [
