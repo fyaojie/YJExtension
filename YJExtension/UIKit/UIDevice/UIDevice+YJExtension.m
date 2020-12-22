@@ -48,7 +48,14 @@
                                              @[@"iPhone11,2"], // iPhone XS
                                              @[@"iPhone11,4", @"iPhone11,6"], //iPhone XS Max
                                              @[@"iPhone11,8"], // iPhone XR
-                                             
+                                              @[@"iPhone12,1"], // iPhone 11
+                                              @[@"iPhone12,3"], // iPhone 11 Pro
+                                              @[@"iPhone12,5"], // iPhone 11 Pro Max
+                                              @[@"iPhone13,2"], // iPhone 12
+                                              @[@"iPhone13,3"], // iPhone 12 Pro
+                                              @[@"iPhone13,4"], // iPhone 12 Pro Max
+                                              @[@"iPhone13,1"], // iPhone 12 mini
+                                              
                                             @[@"iPad2,1", @"iPad2,2", @"iPad2,3", @"iPad2,4"], // iPad 2
                                             @[@"iPad3,1", @"iPad3,2", @"iPad3,3"], // iPad (3rd generation)
                                             @[@"iPad3,4", @"iPad3,5", @"iPad3,6"], // iPad (4th generation)
@@ -118,7 +125,14 @@
         [self yj_deviceType] == YJDeviceType_iPhoneX ||
         [self yj_deviceType] == YJDeviceType_iPhoneXS ||
         [self yj_deviceType] == YJDeviceType_iPhoneXSMax ||
-        [self yj_deviceType] == YJDeviceType_iPhoneXR
+        [self yj_deviceType] == YJDeviceType_iPhoneXR ||
+        [self yj_deviceType] == YJDeviceType_iPhone11 ||
+        [self yj_deviceType] == YJDeviceType_iPhone11Pro ||
+        [self yj_deviceType] == YJDeviceType_iPhone11ProMax ||
+        [self yj_deviceType] == YJDeviceType_iPhone12 ||
+        [self yj_deviceType] == YJDeviceType_iPhone12Pro ||
+        [self yj_deviceType] == YJDeviceType_iPhone12ProMax ||
+        [self yj_deviceType] == YJDeviceType_iPhone12Mini
         ) {
         return YES;
     }
@@ -183,15 +197,20 @@
         case YJDeviceType_iPhoneX:
         case YJDeviceType_iPhoneXS:
         case YJDeviceType_iPhoneXSMax:
-            return 9/18.f;
-            break;
         case YJDeviceType_iPhoneXR:
+        case YJDeviceType_iPhone11:
+        case YJDeviceType_iPhone11Pro:
+        case YJDeviceType_iPhone11ProMax:
+        case YJDeviceType_iPhone12:
+        case YJDeviceType_iPhone12Pro:
+        case YJDeviceType_iPhone12ProMax:
+        case YJDeviceType_iPhone12Mini:
             return 9/19.5f;
             break;
         case YJDeviceType_homePod:
             return 4/5.f;
             break;
-            
+
         case YJDeviceType_iPad2:
         case YJDeviceType_iPad3:
         case YJDeviceType_iPad4:
@@ -286,6 +305,27 @@
             break;
         case YJDeviceType_iPhoneXR:
             value = @"iPhone XR";
+            break;
+        case YJDeviceType_iPhone11:
+            value = @"iPhone 11";
+            break;
+        case YJDeviceType_iPhone11Pro:
+            value = @"iPhone 11 Pro";
+            break;
+        case YJDeviceType_iPhone11ProMax:
+            value = @"iPhone 11 Pro Max";
+            break;
+        case YJDeviceType_iPhone12:
+            value = @"iPhone 12";
+            break;
+        case YJDeviceType_iPhone12Pro:
+            value = @"iPhone 12 Pro";
+            break;
+        case YJDeviceType_iPhone12ProMax:
+            value = @"iPhone 12 Pro Max";
+            break;
+        case YJDeviceType_iPhone12Mini:
+            value = @"iPhone 12 mini";
             break;
             
         case YJDeviceType_iPad2:

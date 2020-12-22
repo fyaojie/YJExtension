@@ -28,17 +28,6 @@
     [super viewDidLoad];
 //    NSLog(@"%@",[NSDate yj_dateWithTimestamp:1527747855]);
     
-    NSArray *arr = @[
-            @{@"分类测试": @"CMSBackGroudViewController"},
-            @{@"Imageview图片加载": @"CMSTESTImageViewController"},
-            @{@"滚动视图": @"CMSCollectionViewController"},
-            @{@"PopoverMenu": @"PopoverMenu"},
-            @{@"新闻快讯": @"CMSNewsTestViewController"},
-    //        @{@"首页-swift": @"HomePageViewController"},
-            @{@"首页-oc": @"CMSHomePageViewController"},
-            @{@"首页组件展示测试": @"HomePageDemonstrationComponentsVC"},
-        ];
-    NSLog(@"%@", arr);
     NSLog(@"%@",[UIDevice yj_description]);
     
     

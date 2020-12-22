@@ -30,6 +30,13 @@ typedef enum : NSUInteger {
     YJDeviceType_iPhoneXS,
     YJDeviceType_iPhoneXSMax,
     YJDeviceType_iPhoneXR,
+    YJDeviceType_iPhone11,
+    YJDeviceType_iPhone11Pro,
+    YJDeviceType_iPhone11ProMax,
+    YJDeviceType_iPhone12,
+    YJDeviceType_iPhone12Pro,
+    YJDeviceType_iPhone12ProMax,
+    YJDeviceType_iPhone12Mini,
     
     YJDeviceType_iPad2,
     YJDeviceType_iPad3,

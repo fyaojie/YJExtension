@@ -2,12 +2,12 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "YJExtension"
-  spec.version      = "1.4.2"
+  spec.version      = "1.4.3"
   spec.summary      = "常用分类框架"
 
   spec.description  = "开发中常用的分类集合，协助你快速开发"
 
-  spec.homepage     = "https://github.com/0dreamboy/YJExtension"
+  spec.homepage     = "https://github.com/fyaojie"
 
   # s.license      = "MIT"
   spec.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
 
   spec.platform     = :ios, "10.0"
 
-  spec.source       = { :git => "https://github.com/0dreamboy/YJExtension.git", :tag => spec.version }
+  spec.source       = { :git => "https://github.com/fyaojie/YJExtension.git", :tag => spec.version }
 
   spec.source_files  = "YJExtension/*.{h,m}"
 
