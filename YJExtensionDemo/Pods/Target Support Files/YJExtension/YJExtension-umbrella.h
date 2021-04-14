@@ -21,6 +21,7 @@
 #import "NSDate+YJExtension.h"
 #import "NSDictionary+YJExtension.h"
 #import "NSNumber+YJRound.h"
+#import "NSObject+YJExtension.h"
 #import "NSObject+YJGCD.h"
 #import "NSObject+YJKVO.h"
 #import "NSObject+YJLog.h"
@@ -67,6 +68,7 @@
 #import "UIView+YJExtension.h"
 #import "UIView+YJFrame.h"
 #import "UIView+YJGestureRecognizer.h"
+#import "UIView+YJLine.h"
 #import "UIView+YJNib.h"
 #import "UIWindow+YJExtension.h"
 
