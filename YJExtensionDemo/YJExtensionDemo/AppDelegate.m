@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import <YJExtension.h>
+//#import <YJExtension.h>
 @interface AppDelegate ()
 
 @end
@@ -17,8 +17,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    NSLog(@"%f", self.yj_safeAreaInsets.bottom);
-    NSLog(@"%f", self.yj_safeAreaInsets.top);
+//    NSLog(@"%f", self.yj_safeAreaInsets.bottom);
+//    NSLog(@"%f", self.yj_safeAreaInsets.top);
     return YES;
 }
 

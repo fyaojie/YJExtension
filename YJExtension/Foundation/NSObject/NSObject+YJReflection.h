@@ -48,4 +48,11 @@
 
 - (BOOL)yj_hasPropertyForKey:(NSString*)key;
 - (BOOL)yj_hasIvarForKey:(NSString*)key;
+
+/// 获取可用属性列表
+- (NSArray<NSString *> *)yj_validProperties;
+/// 为当前对象关联内容
+- (void)yj_setValue:(nullable id)value forKey:(NSString *_Nullable)key;
+/// 获取当前对象关联内容
+- (nullable id)yj_valueForKey:(NSString *_Nullable)key;
 @end

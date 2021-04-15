@@ -129,6 +129,211 @@
     return roundedImage;
 }
 
++ (UIImage *)yj_triangleImageWithColor:(UIColor *)color
+                                   size:(CGSize)size
+                              direction:(YJTriangleImageDirection)direction {
+    /// 异常处理
+    if (color == nil) { color = [UIColor blackColor]; }
+    CGFloat imageWidth = size.width;
+    CGFloat imageHeight = size.height;
+    if (imageWidth > 1000 || imageWidth < 1) { imageWidth = 30; }
+    if (imageHeight > 1000 || imageHeight < 1) { imageHeight = imageWidth; }
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(imageWidth, imageHeight), NO, [UIScreen mainScreen].scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    switch (direction) {
+        case YJTriangleImageDirectionRight:
+            CGContextMoveToPoint(context, 0, 0);
+            CGContextAddLineToPoint(context, 0, imageHeight);
+            CGContextAddLineToPoint(context, imageWidth, imageHeight * 0.5);
+            break;
+        case YJTriangleImageDirectionLeft:
+            CGContextMoveToPoint(context, imageWidth, 0);
+            CGContextAddLineToPoint(context, imageWidth, imageHeight);
+            CGContextAddLineToPoint(context, 0, imageHeight * 0.5);
+            break;
+        case YJTriangleImageDirectionUp:
+            CGContextMoveToPoint(context, imageWidth * 0.5, 0);
+            CGContextAddLineToPoint(context, imageWidth, imageHeight);
+            CGContextAddLineToPoint(context, 0, imageHeight);
+            break;
+        case YJTriangleImageDirectionDecline:
+            CGContextMoveToPoint(context, 0, 0);
+            CGContextAddLineToPoint(context, imageWidth, 0);
+            CGContextAddLineToPoint(context, imageWidth * 0.5, imageHeight);
+            break;
+        default:
+            break;
+    }
+    
+    CGContextClosePath(context);
+    /// 边框颜色填充
+    [color setStroke];
+    /// 内容填充
+    [color setFill];
+    CGContextDrawPath(context, kCGPathFillStroke);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
++ (UIImage *)yj_arrowImageWithColor:(UIColor *)color size:(CGSize)size direction:(YJTriangleImageDirection)direction {
+    return [self yj_arrowImageWithColor:color size:size direction:direction backgroudColor:[UIColor whiteColor]];
+}
+
++ (UIImage *)yj_arrowImageWithColor:(UIColor *)color
+                                size:(CGSize)size
+                           direction:(YJTriangleImageDirection)direction
+                      backgroudColor:(UIColor *)backgroudColor {
+    /// 异常处理
+    if (color == nil) { color = [UIColor grayColor]; }
+    if (backgroudColor == nil) { backgroudColor = [UIColor whiteColor]; }
+    CGFloat imageWidth = size.width;
+    CGFloat imageHeight = size.height;
+    if (imageWidth > 1000 || imageWidth < 1) { imageWidth = 30; }
+    if (imageHeight > 1000 || imageHeight < 1) { imageHeight = imageWidth; }
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(imageWidth, imageHeight), NO, [UIScreen mainScreen].scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [backgroudColor CGColor]);
+    CGContextFillRect(context, CGRectMake(0, 0, imageWidth, imageHeight));
+    switch (direction) {
+        case YJTriangleImageDirectionRight:
+            CGContextMoveToPoint(context, 0, 0);
+            CGContextAddLineToPoint(context, imageWidth, imageHeight * 0.5);
+            CGContextAddLineToPoint(context, 0, imageHeight);
+            break;
+        case YJTriangleImageDirectionLeft:
+            CGContextMoveToPoint(context, imageWidth, 0);
+            CGContextAddLineToPoint(context, 0, imageHeight * 0.5);
+            CGContextAddLineToPoint(context, imageWidth, imageHeight);
+            break;
+        case YJTriangleImageDirectionUp:
+            CGContextAddLineToPoint(context, 0, imageHeight);
+            CGContextMoveToPoint(context, imageWidth * 0.5, 0);
+            CGContextAddLineToPoint(context, imageWidth, imageHeight);
+            break;
+        case YJTriangleImageDirectionDecline:
+            CGContextMoveToPoint(context, 0, 0);
+            CGContextAddLineToPoint(context, imageWidth * 0.5, imageHeight);
+            CGContextAddLineToPoint(context, imageWidth, 0);
+            break;
+        default:
+            break;
+    }
+
+//    CGContextClosePath(context);
+    /// 边框颜色填充
+    [color setStroke];
+    /// 内容填充
+//    [backgroudColor setFill];
+    CGContextDrawPath(context, kCGPathFillStroke);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
++ (UIImage *)yj_closeImageWithColor:(UIColor *)color size:(CGSize)size {
+    return [self yj_closeImageWithColor:color backgroudColor:nil size:size lineWidth:1 isRound:NO];
+}
++ (UIImage *)yj_closeImageWithColor:(UIColor *)color
+                      backgroudColor:(UIColor * _Nullable)backgroudColor
+                                size:(CGSize)size
+                           lineWidth:(CGFloat)lineWidth
+                             isRound:(BOOL)isRound {
+    /// 异常处理
+    if (color == nil) { color = [UIColor grayColor]; }
+    if (backgroudColor == nil) { backgroudColor = [UIColor whiteColor]; }
+    lineWidth = MIN(MAX(1, lineWidth), 10);
+    
+    CGFloat imageWidth = size.width;
+    CGFloat imageHeight = size.height;
+    if (imageWidth > 1000 || imageWidth < 1) { imageWidth = 30; }
+    if (imageHeight > 1000 || imageHeight < 1) { imageHeight = imageWidth; }
+
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(imageWidth, imageHeight), NO, [UIScreen mainScreen].scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    if (isRound) {
+        imageWidth = MIN(imageWidth, imageHeight);
+        imageHeight = imageWidth;
+        [[UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, imageWidth, imageHeight) cornerRadius:imageWidth * 0.5] addClip];
+    }
+    CGContextSetFillColorWithColor(context, [backgroudColor CGColor]);
+    CGContextFillRect(context, CGRectMake(0, 0, imageWidth, imageHeight));
+    CGContextSetLineWidth(context, lineWidth);
+
+    if (isRound) {
+        CGContextMoveToPoint(context, imageWidth * 1 / 4.0, imageWidth * 1 / 4.0);
+        CGContextAddLineToPoint(context, imageWidth * 3 / 4.0, imageWidth * 3 / 4.0);
+        CGContextMoveToPoint(context, imageWidth * 3 / 4.0, imageWidth * 1 / 4.0);
+        CGContextAddLineToPoint(context, imageWidth * 1 / 4.0, imageWidth * 3 / 4.0);
+    } else {
+        CGContextMoveToPoint(context, 0, 0);
+        CGContextAddLineToPoint(context, imageWidth, imageHeight);
+        CGContextMoveToPoint(context, imageWidth, 0);
+        CGContextAddLineToPoint(context, 0, imageHeight);
+    }
+    
+    
+//    CGContextClosePath(context);
+    /// 边框颜色填充
+    [color setStroke];
+    /// 内容填充
+//    [color setFill];
+    CGContextStrokePath(context);
+//    CGContextDrawPath(context, kCGPathFillStroke);
+
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
++ (UIImage *)yj_addImageWithColor:(UIColor *)color
+                      backgroudColor:(UIColor *)backgroudColor
+                                size:(CGSize)size
+                           lineWidth:(CGFloat)lineWidth
+                             isRound:(BOOL)isRound {
+    /// 异常处理
+    if (color == nil) { color = [UIColor grayColor]; }
+    if (backgroudColor == nil) { backgroudColor = [UIColor whiteColor]; }
+    lineWidth = MIN(MAX(1, lineWidth), 10);
+    
+    CGFloat imageWidth = size.width;
+    CGFloat imageHeight = size.height;
+    if (imageWidth > 1000 || imageWidth < 1) { imageWidth = 30; }
+    if (imageHeight > 1000 || imageHeight < 1) { imageHeight = imageWidth; }
+
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(imageWidth, imageHeight), NO, [UIScreen mainScreen].scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    if (isRound) {
+        imageWidth = MIN(imageWidth, imageHeight);
+        imageHeight = imageWidth;
+        [[UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, imageWidth, imageHeight) cornerRadius:imageWidth * 0.5] addClip];
+    }
+    CGContextSetFillColorWithColor(context, [backgroudColor CGColor]);
+    CGContextFillRect(context, CGRectMake(0, 0, imageWidth, imageHeight));
+    CGContextSetLineWidth(context, lineWidth);
+
+    CGContextMoveToPoint(context, imageWidth * 0.5, 0);
+    CGContextAddLineToPoint(context, imageWidth * 0.5, imageHeight);
+    CGContextMoveToPoint(context, 0, imageHeight * 0.5);
+    CGContextAddLineToPoint(context, imageWidth, imageHeight * 0.5);
+    
+    
+//    CGContextClosePath(context);
+    /// 边框颜色填充
+    [color setStroke];
+    /// 内容填充
+//    [color setFill];
+    CGContextStrokePath(context);
+//    CGContextDrawPath(context, kCGPathFillStroke);
+
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 @end
 
 

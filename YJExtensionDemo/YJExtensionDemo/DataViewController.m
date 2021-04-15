@@ -7,7 +7,7 @@
 //
 
 #import "DataViewController.h"
-#import <YJExtension/YJExtension.h>
+//#import <YJExtension/YJExtension.h>
 //#import "NSDate+YJUtilities.h"
 
 @interface DataViewController ()
@@ -22,18 +22,18 @@
 
 @implementation DataViewController
 - (IBAction)clickSubmittingButton:(UIButton *)sender {
-    [sender yj_beginSubmitting:@"提交中。。。"];
+//    [sender yj_beginSubmitting:@"提交中。。。"];
 }
 - (IBAction)clickCountDownButton:(UIButton *)sender {
-    [sender yj_startTime:60 title:@"获取验证码" waitTitle:@"倒计时"];
-     
-     [self.submittingButton yj_endSubmitting];
+//    [sender yj_startTime:60 title:@"获取验证码" waitTitle:@"倒计时"];
+//
+//     [self.submittingButton yj_endSubmitting];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    NSLog(@"%ld",[NSDate date].yj_week);
-    NSLog(@"%ld",[NSDate date].yj_weekday);
+//    NSLog(@"%ld",[NSDate date].yj_weekday);
 //    NSLog(@"%ld",[NSDate date].yj_nthWeekday);
     
 //    self.textView.yj_maxFontSize = 30;
@@ -58,7 +58,7 @@
 //    [DataViewController jk_openAppReviewURLForIdentifier:1338674422];
 //    [self jk_presentStoreKitItemWithIdentifier:1338674422];
 //    [DataViewController jk_openAppURLForIdentifier:1338674422];
-    [self yj_openAppURLForIdentifier:1338674422];
+//    [self yj_openAppURLForIdentifier:1338674422];
 }
 
 /*

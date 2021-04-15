@@ -68,7 +68,6 @@
 #import "UIView+YJExtension.h"
 #import "UIView+YJFrame.h"
 #import "UIView+YJGestureRecognizer.h"
-#import "UIView+YJLine.h"
 #import "UIView+YJNib.h"
 #import "UIWindow+YJExtension.h"
 

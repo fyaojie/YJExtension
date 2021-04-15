@@ -28,4 +28,21 @@
     }
     return [NSDictionary dictionaryWithDictionary:dict];
 }
+
+- (NSDictionary *)yj_URLParse {
+    if (self == nil || self.length <= 0) { return @{}; }
+    NSString *text = self;
+    if (![text containsString:@"?"]) {
+        text = [@"?" stringByAppendingString:text];
+    }
+    NSMutableDictionary *muDict = [NSMutableDictionary dictionary];
+    NSURLComponents *components = [[NSURLComponents alloc] initWithString:text];
+    for (NSURLQueryItem *item in components.queryItems) {
+        if (item.name) {
+            [muDict setObject:item.value forKey:item.name];
+        }
+    }
+    return muDict.copy;
+}
+
 @end

@@ -7,14 +7,45 @@
 //
 
 #import "UIView+YJExtension.h"
+#import <objc/runtime.h>
 
 @implementation UIView (YJExtension)
+
++ (void)load {
+    method_exchangeImplementations(class_getInstanceMethod([self class], @selector(pointInside:withEvent:)),
+                                   class_getInstanceMethod([self class], @selector(hitTest_pointInside:withEvent:)));
+}
+
+- (void)setHitTestEdgeInsets:(UIEdgeInsets)hitTestEdgeInsets
+{
+    NSValue *value = [NSValue value:&hitTestEdgeInsets withObjCType:@encode(UIEdgeInsets)];
+    objc_setAssociatedObject(self, @selector(hitTestEdgeInsets), value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIEdgeInsets)hitTestEdgeInsets {
+    NSValue *value = objc_getAssociatedObject(self, _cmd);
+    if (value) {
+        UIEdgeInsets edgeInsets;
+        [value getValue:&edgeInsets];
+        return edgeInsets;
+    } else {
+        return UIEdgeInsetsZero;
+    }
+}
+
+- (BOOL)hitTest_pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    if (UIEdgeInsetsEqualToEdgeInsets(self.hitTestEdgeInsets, UIEdgeInsetsZero)) {
+        return [self hitTest_pointInside:point withEvent:event];
+    }
+    CGRect relativeFrame = self.bounds;
+    CGRect hitFrame = UIEdgeInsetsInsetRect(relativeFrame, self.hitTestEdgeInsets);
+    return CGRectContainsPoint(hitFrame, point);
+}
 
 /**
  *  当前view所在的viewcontroler
  */
-- (UIViewController *)yj_viewController
-{
+- (UIViewController *)yj_viewController {
     UIResponder *responder = self.nextResponder;
     do {
         if ([responder isKindOfClass:[UIViewController class]]) {
@@ -81,6 +112,12 @@
     self.transform = oldTransform;
     
     return screenshot;
+}
+
+- (void)yj_removeAllSubviews {
+    while (self.subviews.count) {
+        [self.subviews.lastObject removeFromSuperview];
+    }
 }
 
 @end

@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "DataViewController.h"
 #import "YJExtension.h"
-#import "UIView+YJLine.h"
+#import "UIView+CMSSeparator.h"
 @interface ViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -32,29 +32,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"%@",[NSDate yj_dateWithTimestamp:1527747855]);
-    
-    NSLog(@"%@",[UIDevice yj_description]);
-    NSLog(@"%@", [@"abc=888" yj_URLQuery]);
-    NSLog(@"%@", [@"abc=888" yj_URLParse]);
-
-    NSLog(@"%f", self.yj_safeAreaInsets.bottom);
-    NSLog(@"%f", self.yj_safeAreaInsets.top);
+//    NSLog(@"%@",[NSDate yj_dateWithTimestamp:1527747855]);
+//    
+//    NSLog(@"%@",[UIDevice yj_description]);
+//    NSLog(@"%@", [@"abc=888" yj_URLQuery]);
+//    NSLog(@"%@", [@"abc=888" yj_URLParse]);
+//
+//    NSLog(@"%f", self.yj_safeAreaInsets.bottom);
+//    NSLog(@"%f", self.yj_safeAreaInsets.top);
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
-//    self.tableView.hidden = YES;
+    self.tableView.hidden = YES;
     
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
-    bgView.backgroundColor = [UIColor redColor];
+    bgView.backgroundColor = [UIColor yellowColor];
     [self.view addSubview:bgView];
 //    bgView.separatorWeight = 20;
 //    bgView.cms_separatorColor = [UIColor blueColor];
 //    bgView.showTopSeparator = true;
 //    bgView.showBottomSeparator = true;
 //    bgView.topSeparatorInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-    [bgView yj_addLineAt:CGPointMake(50, 10) isVertical:true length:100];
+//    [bgView yj_addLineAt:CGPointMake(50, 10) isVertical:true length:100];
+//    [self.view setNeedsLayout];
+    bgView.cms_separatorColor = [UIColor redColor];
+    bgView.showBottomSeparator = YES;
+    bgView.bottomSeparatorInsets = UIEdgeInsetsMake(0, 2, 0, 2);
+    [bgView setNeedsLayout];
+    [bgView layoutIfNeeded];
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

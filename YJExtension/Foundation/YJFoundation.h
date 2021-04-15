@@ -36,4 +36,5 @@
 #import "NSObject+YJGCD.h"
 #import "NSObject+YJReflection.h"
 #import "NSObject+YJKVO.h"
+#import "NSObject+YJExtension.h"
 #endif /* YJFoundation_h */
