@@ -19,7 +19,6 @@
 		18EC056F2068F493006BA806 /* YJExtensionDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EC056E2068F493006BA806 /* YJExtensionDemoTests.m */; };
 		18EC057A2068F493006BA806 /* YJExtensionDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EC05792068F493006BA806 /* YJExtensionDemoUITests.m */; };
 		394C8A5212D27F945BF16BF4 /* Pods_YJExtensionDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6733E878DA1FC611BFDA3E61 /* Pods_YJExtensionDemoTests.framework */; };
-		3DB4AD0B26281202006413F2 /* UIView+CMSSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB4AD0A26281202006413F2 /* UIView+CMSSeparator.m */; };
 		EB5757F5B51BCC30C17AB335 /* Pods_YJExtensionDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E3A366F529C804CE0EACC9 /* Pods_YJExtensionDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,8 +61,6 @@
 		18EC05792068F493006BA806 /* YJExtensionDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJExtensionDemoUITests.m; sourceTree = "<group>"; };
 		18EC057B2068F493006BA806 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37D19E5F2E5B196A8CD41D8C /* Pods_YJExtensionDemo_YJExtensionDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YJExtensionDemo_YJExtensionDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3DB4AD0926281202006413F2 /* UIView+CMSSeparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CMSSeparator.h"; sourceTree = "<group>"; };
-		3DB4AD0A26281202006413F2 /* UIView+CMSSeparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CMSSeparator.m"; sourceTree = "<group>"; };
 		41D52BBC4A6DBC298256694D /* Pods-YJExtensionDemo-YJExtensionDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YJExtensionDemo-YJExtensionDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-YJExtensionDemo-YJExtensionDemoUITests/Pods-YJExtensionDemo-YJExtensionDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		44427E7AA0C387CAAC3B6673 /* Pods-YJExtensionDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YJExtensionDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-YJExtensionDemoTests/Pods-YJExtensionDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C1B8BEE3CD6EE5B956584DA /* Pods-YJExtensionDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YJExtensionDemoTests.release.xcconfig"; path = "Target Support Files/Pods-YJExtensionDemoTests/Pods-YJExtensionDemoTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,8 +123,6 @@
 		18EC05542068F493006BA806 /* YJExtensionDemo */ = {
 			isa = PBXGroup;
 			children = (
-				3DB4AD0926281202006413F2 /* UIView+CMSSeparator.h */,
-				3DB4AD0A26281202006413F2 /* UIView+CMSSeparator.m */,
 				18EC05552068F493006BA806 /* AppDelegate.h */,
 				18EC05562068F493006BA806 /* AppDelegate.m */,
 				18EC05582068F493006BA806 /* ViewController.h */,
@@ -430,7 +425,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1865415720BF9F82007D9F26 /* DataViewController.m in Sources */,
-				3DB4AD0B26281202006413F2 /* UIView+CMSSeparator.m in Sources */,
 				18EC055A2068F493006BA806 /* ViewController.m in Sources */,
 				18EC05652068F493006BA806 /* main.m in Sources */,
 				18EC05572068F493006BA806 /* AppDelegate.m in Sources */,

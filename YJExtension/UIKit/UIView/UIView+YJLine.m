@@ -1,12 +1,11 @@
 //
-//  UIView+CMSSeparator.m
-//  cmsmobilesecurities
+//  UIView+YJLine.m
+//  CMSPaaS
 //
-//  Created by 申健 on 2018/6/4.
-//  Copyright © 2018年 cms. All rights reserved.
+//  Created by SJ on 2020/10/15.
 //
 
-#import "UIView+CMSSeparator.h"
+#import "UIView+YJLine.h"
 #import <objc/runtime.h>
 #define HEXCOLOR(hexValue)              [UIColor colorWithRed : ((CGFloat)((hexValue & 0xFF0000) >> 16)) / 255.0 green : ((CGFloat)((hexValue & 0xFF00) >> 8)) / 255.0 blue : ((CGFloat)(hexValue & 0xFF)) / 255.0 alpha : 1.0]
 
@@ -22,7 +21,7 @@ static CGFloat lineWeight;
 
 @end
 
-@implementation UIView (CMSSeparator)
+@implementation UIView (YJLine)
 
 + (void)load
 {

@@ -54,7 +54,6 @@ static const void *YJTextViewInputLimitMaxLength = &YJTextViewInputLimitMaxLengt
 }
 
 + (void)load {
-    [super load];
     Method origMethod = class_getInstanceMethod([self class], NSSelectorFromString(@"dealloc"));
     Method newMethod = class_getInstanceMethod([self class], @selector(jk_textView_limit_swizzledDealloc));
     method_exchangeImplementations(origMethod, newMethod);

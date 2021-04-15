@@ -1,14 +1,15 @@
 //
-//  UIView+CMSSeparator.h
-//  cmsmobilesecurities
+//  UIView+YJLine.h
+//  CMSPaaS
 //
-//  Created by 申健 on 2018/6/4.
-//  Copyright © 2018年 cms. All rights reserved.
+//  Created by SJ on 2020/10/15.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (CMSSeparator)
+NS_ASSUME_NONNULL_BEGIN
+
+@interface UIView (YJLine)
 
 @property (nonatomic, assign) CGFloat separatorWidth;
 @property (nonatomic, strong) UIColor *cms_separatorColor;
@@ -22,3 +23,5 @@
 @property (nonatomic, assign) UIEdgeInsets rightSeparatorInsets;
 
 @end
+
+NS_ASSUME_NONNULL_END

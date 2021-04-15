@@ -46,6 +46,7 @@
 #import "UIView+YJGestureRecognizer.h" // 点击长按手势
 #import "UIView+YJNib.h" // nib文件获取
 #import "UIView+YJExtension.h" // 截图 所在vc
+#import "UIView+YJLine.h"
 
 #import "UITextView+YJPlaceHolder.h" // 默认文字
 #import "UITextView+YJExtension.h" // 内容输入长度限制，内容选中，捏合手势控制字体大小
