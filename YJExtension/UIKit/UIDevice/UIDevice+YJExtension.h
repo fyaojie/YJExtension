@@ -12,6 +12,7 @@ typedef enum : NSUInteger {
     YJDeviceType_unknown = 0,
     YJDeviceType_iPodTouch5,
     YJDeviceType_iPodTouch6,
+    YJDeviceType_iPodTouch7,
     YJDeviceType_iPhone4,
     YJDeviceType_iPhone4s,
     YJDeviceType_iPhone5,
@@ -37,23 +38,43 @@ typedef enum : NSUInteger {
     YJDeviceType_iPhone12Pro,
     YJDeviceType_iPhone12ProMax,
     YJDeviceType_iPhone12Mini,
+    YJDeviceType_iPhone13,
+    YJDeviceType_iPhone13Pro,
+    YJDeviceType_iPhone13ProMax,
+    YJDeviceType_iPhone13Mini,
     
     YJDeviceType_iPad2,
     YJDeviceType_iPad3,
     YJDeviceType_iPad4,
-    YJDeviceType_iPadAir,
-    YJDeviceType_iPadAir2,
     YJDeviceType_iPad5,
     YJDeviceType_iPad6,
+    YJDeviceType_iPad7,
+    YJDeviceType_iPad8,
+    YJDeviceType_iPad9,
+    
+    YJDeviceType_iPadAir,
+    YJDeviceType_iPadAir2,
+    YJDeviceType_iPadAir3,
+    YJDeviceType_iPadAir4,
+    
     YJDeviceType_iPadMini,
     YJDeviceType_iPadMini2,
     YJDeviceType_iPadMini3,
     YJDeviceType_iPadMini4,
+    YJDeviceType_iPadMini5,
+    YJDeviceType_iPadMini6,
+    
     YJDeviceType_iPadPro9Inch,
+    YJDeviceType_iPadPro10Inch,
+    YJDeviceType_iPadPro11Inch,
+    YJDeviceType_iPadPro11Inch2,
+    YJDeviceType_iPadPro11Inch3,
     YJDeviceType_iPadPro12Inch,
     YJDeviceType_iPadPro12Inch2,
-    YJDeviceType_iPadPro10Inch,
-    
+    YJDeviceType_iPadPro12Inch3,
+    YJDeviceType_iPadPro12Inch4,
+    YJDeviceType_iPadPro12Inch5,
+
     YJDeviceType_homePod
 } YJDeviceType;
 
@@ -84,16 +105,6 @@ typedef enum : NSUInteger {
  是否是pod
  */
 + (BOOL)yj_isPod;
-
-/**
- 是否是phone
- */
-+ (BOOL)yj_isPhone;
-
-/**
- 是否是pad
- */
-+ (BOOL)yj_isPad;
 
 /**
  是否是模拟器
