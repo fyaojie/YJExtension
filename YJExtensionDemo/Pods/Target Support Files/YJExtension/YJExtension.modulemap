@@ -1,6 +1,0 @@
-framework module YJExtension {
-  umbrella header "YJExtension-umbrella.h"
-
-  export *
-  module * { export * }
-}
